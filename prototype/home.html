@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>茅台经销商信息</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- 自定义样式 -->
+  <link rel="stylesheet" href="common.css">
+  
+  <style>
+    .dealer-info {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+    
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    
+    .dealer-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 8px;
+    }
+    
+    .header-banner {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: var(--border-radius);
+      margin-bottom: 16px;
+    }
+    
+    .dealer-list-item {
+      display: flex;
+      padding: 12px 16px;
+      background-color: white;
+      border-radius: var(--border-radius);
+      margin-bottom: 8px;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .dealer-list-item:active {
+      background-color: #f8f8f8;
+    }
+    
+    .dealer-index {
+      width: 24px;
+      height: 24px;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+    
+    .dealer-content {
+      flex: 1;
+    }
+    
+    .dealer-address {
+      font-size: 13px;
+      color: var(--gray-dark);
+      margin-bottom: 4px;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .dealer-phone {
+      font-size: 13px;
+      color: var(--gray-dark);
+    }
+    
+    .dealer-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .action-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    
+    .action-icon.navigate {
+      background-color: var(--primary-color);
+    }
+    
+    .action-icon.call {
+      background-color: var(--success-color);
+    }
+    
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-color);
+    }
+    
+    .section-action {
+      color: var(--primary-color);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    
+    .filter-tabs {
+      display: flex;
+      overflow-x: auto;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .filter-tab {
+      padding: 8px 16px;
+      background-color: var(--gray-medium);
+      border-radius: 16px;
+      margin-right: 8px;
+      white-space: nowrap;
+      font-size: 14px;
+      color: var(--gray-dark);
+    }
+    
+    .filter-tab.active {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo {
+      width: 40px;
+      height: 40px;
+      margin-right: 12px;
+    }
+    
+    .app-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+    
+    .notification-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--gray-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray-dark);
+    }
+  </style>
+</head>
+<body>
+  <!-- iOS 状态栏 -->
+  <div class="ios-status-bar">
+    <div class="status-bar-left">
+      <div class="status-bar-time">14:30</div>
+    </div>
+    <div class="status-bar-right">
+      <i class="fas fa-signal"></i>
+      <i class="fas fa-wifi"></i>
+      <div class="status-bar-battery">
+        <div class="status-bar-battery-level"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 内容容器 -->
+  <div class="content-container">
+    <!-- 页面头部 -->
+    <div class="page-header">
+      <div class="logo-container">
+        <img src="https://raw.githubusercontent.com/username/repository-name/main/images/logo.svg" alt="茅台Logo" class="logo">
+        <div class="app-title">贵州茅台云南经销商</div>
+      </div>
+      <div class="notification-icon">
+        <i class="fas fa-bell"></i>
+      </div>
+    </div>
+    
+    <!-- 搜索栏 -->
+    <div class="search-container">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" class="search-input" id="searchInput" placeholder="搜索经销商名称或地址..." onkeyup="onSearch()">
+    </div>
+    
+    <!-- 顶部横幅 -->
+    <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="茅台专卖店" class="header-banner">
+    
+    <!-- 筛选标签 -->
+    <div class="filter-tabs">
+      <div class="filter-tab active">全部</div>
+      <div class="filter-tab">昆明市</div>
+      <div class="filter-tab">大理</div>
+      <div class="filter-tab">丽江</div>
+      <div class="filter-tab">西双版纳</div>
+      <div class="filter-tab">其他地区</div>
+    </div>
+    
+    <!-- 经销商列表标题 -->
+    <div class="section-header">
+      <div class="section-title">经销商列表</div>
+      <a href="search.html" class="section-action">查看全部 <i class="fas fa-chevron-right"></i></a>
+    </div>
+    
+    <!-- 经销商列表 -->
+    <div id="dealersList">
+      <!-- 经销商1 -->
+      <div class="dealer-list-item" onclick="window.location.href='detail.html?id=1'">
+        <div class="dealer-index">01</div>
+        <div class="dealer-content">
+          <div class="dealer-name">昆明市五华区茅台专卖店</div>
+          <div class="dealer-address">昆明市五华区人民中路17号</div>
+          <div class="dealer-phone">0871-63612345</div>
+        </div>
+        <div class="dealer-actions">
+          <a href="javascript:void(0);" class="action-icon navigate" onclick="event.stopPropagation(); navigateToDealer(25.042609, 102.704206, '云南省昆明市五华区人民中路17号')">
+            <i class="fas fa-map-marker-alt"></i>
+          </a>
+          <a href="javascript:void(0);" class="action-icon call" onclick="event.stopPropagation(); callDealer('0871-63612345')">
+            <i class="fas fa-phone"></i>
+          </a>
+        </div>
+      </div>
+      
+      <!-- 经销商2 -->
+      <div class="dealer-list-item" onclick="window.location.href='detail.html?id=2'">
+        <div class="dealer-index">02</div>
+        <div class="dealer-content">
+          <div class="dealer-name">昆明市五华区昆明全兴科技贸易有限公司昆明市专卖店</div>
+          <div class="dealer-address">昆明市五华区西园路1号-28B05-7楼</div>
+          <div class="dealer-phone">0871-65312345</div>
+        </div>
+        <div class="dealer-actions">
+          <a href="javascript:void(0);" class="action-icon navigate" onclick="event.stopPropagation(); navigateToDealer(25.052123, 102.72698, '昆明市五华区西园路1号-28B05-7楼')">
+            <i class="fas fa-map-marker-alt"></i>
+          </a>
+          <a href="javascript:void(0);" class="action-icon call" onclick="event.stopPropagation(); callDealer('0871-65312345')">
+            <i class="fas fa-phone"></i>
+          </a>
+        </div>
+      </div>
+      
+      <!-- 经销商3 -->
+      <div class="dealer-list-item" onclick="window.location.href='detail.html?id=3'">
+        <div class="dealer-index">03</div>
+        <div class="dealer-content">
+          <div class="dealer-name">昆明市盘龙区昆明全兴科技贸易有限公司昆明市专卖店</div>
+          <div class="dealer-address">昆明市盘龙区北京路330-334号</div>
+          <div class="dealer-phone">0871-65312678</div>
+        </div>
+        <div class="dealer-actions">
+          <a href="javascript:void(0);" class="action-icon navigate" onclick="event.stopPropagation(); navigateToDealer(25.052123, 102.72698, '昆明市盘龙区北京路330-334号')">
+            <i class="fas fa-map-marker-alt"></i>
+          </a>
+          <a href="javascript:void(0);" class="action-icon call" onclick="event.stopPropagation(); callDealer('0871-65312678')">
+            <i class="fas fa-phone"></i>
+          </a>
+        </div>
+      </div>
+      
+      <!-- 经销商4 -->
+      <div class="dealer-list-item" onclick="window.location.href='detail.html?id=4'">
+        <div class="dealer-index">04</div>
+        <div class="dealer-content">
+          <div class="dealer-name">昆明市五华区昆明荣誉贸易有限公司昆明市专卖店</div>
+          <div class="dealer-address">昆明市五华区南屏街文昌街及滨江路交叉口7-14号商铺</div>
+          <div class="dealer-phone">0871-68332163</div>
+        </div>
+        <div class="dealer-actions">
+          <a href="javascript:void(0);" class="action-icon navigate" onclick="event.stopPropagation(); navigateToDealer(25.042609, 102.704206, '昆明市五华区南屏街文昌街及滨江路交叉口7-14号商铺')">
+            <i class="fas fa-map-marker-alt"></i>
+          </a>
+          <a href="javascript:void(0);" class="action-icon call" onclick="event.stopPropagation(); callDealer('0871-68332163')">
+            <i class="fas fa-phone"></i>
+          </a>
+        </div>
+      </div>
+      
+      <!-- 经销商5 -->
+      <div class="dealer-list-item" onclick="window.location.href='detail.html?id=5'">
+        <div class="dealer-index">05</div>
+        <div class="dealer-content">
+          <div class="dealer-name">昆明市五华区云南方德商贸有限公司</div>
+          <div class="dealer-address">昆明市五华区昆明市600号银海A3地块2号学生一栋商铺A、A4号</div>
+          <div class="dealer-phone">0871-65152326</div>
+        </div>
+        <div class="dealer-actions">
+          <a href="javascript:void(0);" class="action-icon navigate" onclick="event.stopPropagation(); navigateToDealer(25.042609, 102.704206, '昆明市五华区昆明市600号银海A3地块2号学生一栋商铺A、A4号')">
+            <i class="fas fa-map-marker-alt"></i>
+          </a>
+          <a href="javascript:void(0);" class="action-icon call" onclick="event.stopPropagation(); callDealer('0871-65152326')">
+            <i class="fas fa-phone"></i>
+          </a>
+        </div>
+      </div>
+      
+      <!-- 经销商6 -->
+      <div class="dealer-list-item" onclick="window.location.href='detail.html?id=6'">
+        <div class="dealer-index">06</div>
+        <div class="dealer-content">
+          <div class="dealer-name">昆明市盘龙区昆明德福酒业有限公司昆明市专卖店</div>
+          <div class="dealer-address">昆明市盘龙区北京路银都广场1幢1-2/1-6/1-7商铺</div>
+          <div class="dealer-phone">0871-65095636</div>
+        </div>
+        <div class="dealer-actions">
+          <a href="javascript:void(0);" class="action-icon navigate" onclick="event.stopPropagation(); navigateToDealer(25.052123, 102.72698, '昆明市盘龙区北京路银都广场1幢1-2/1-6/1-7商铺')">
+            <i class="fas fa-map-marker-alt"></i>
+          </a>
+          <a href="javascript:void(0);" class="action-icon call" onclick="event.stopPropagation(); callDealer('0871-65095636')">
+            <i class="fas fa-phone"></i>
+          </a>
+        </div>
+      </div>
+      
+      <!-- 查看更多按钮 -->
+      <a href="search.html" class="btn btn-outline">
+        <i class="fas fa-list"></i> 查看更多经销商
+      </a>
+    </div>
+    
+    <!-- 加载中图标 -->
+    <div id="loader" class="loader" style="display: none;">
+      <i class="fas fa-spinner"></i>
+      <div>加载经销商信息...</div>
+    </div>
+  </div>
+  
+  <!-- 底部导航栏 -->
+  <div class="tab-bar">
+    <a href="#home" class="tab-item active">
+      <i class="fas fa-home tab-icon"></i>
+      <span>首页</span>
+    </a>
+    <a href="search.html" class="tab-item">
+      <i class="fas fa-search tab-icon"></i>
+      <span>搜索</span>
+    </a>
+    <a href="#map" class="tab-item">
+      <i class="fas fa-map-marked-alt tab-icon"></i>
+      <span>地图</span>
+    </a>
+    <a href="about.html" class="tab-item">
+      <i class="fas fa-info-circle tab-icon"></i>
+      <span>关于</span>
+    </a>
+  </div>
+  
+  <!-- JavaScript 文件 -->
+  <script src="common.js"></script>
+  <script>
+    function onSearch() {
+      const keyword = document.getElementById('searchInput').value.trim();
+      if (keyword) {
+        window.location.href = `search.html?keyword=${encodeURIComponent(keyword)}`;
+      }
+    }
+    
+    // 监听Enter键
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        onSearch();
+      }
+    });
+    
+    // 筛选标签点击事件
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        // 移除所有active类
+        filterTabs.forEach(t => t.classList.remove('active'));
+        // 添加active类到当前点击的tab
+        this.classList.add('active');
+        
+        // 实际项目中应该根据选择的标签过滤数据
+        console.log('筛选条件:', this.textContent);
+      });
+    });
+  </script>
+</body>
+</html> 

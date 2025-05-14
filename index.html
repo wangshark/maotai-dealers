@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>云南省茅台经销商信息</title>
+  
+  <!-- Font Awesome 图标 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  
+  <!-- 自定义样式 -->
+  <link href="./css/style.css" rel="stylesheet">
+  
+  <!-- 网站图标 -->
+  <link rel="icon" type="image/svg+xml" href="./images/logo.svg">
+  
+  <!-- SEO 优化 -->
+  <meta name="description" content="云南省茅台经销商信息查询，提供导航和一键拨打电话功能">
+  <meta name="keywords" content="云南,茅台,经销商,导航,电话">
+</head>
+<body>
+  <!-- iOS 状态栏模拟 -->
+  <div class="ios-status-bar">
+    <div class="status-bar-left">
+      <div class="status-bar-time">14:30</div>
+    </div>
+    <div class="status-bar-right">
+      <i class="fas fa-signal"></i>
+      <i class="fas fa-wifi"></i>
+      <div class="status-bar-battery">
+        <div class="status-bar-battery-level"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 页面头部 -->
+  <header>
+    <div class="container">
+      <div class="page-header">
+        <div class="logo-container">
+          <img src="./images/logo.svg" alt="茅台Logo" class="logo">
+          <div class="app-title">贵州茅台云南经销商</div>
+        </div>
+        <div class="notification-icon">
+          <i class="fas fa-bell"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <!-- 主要内容 -->
+  <main class="container">
+    <!-- 搜索栏 -->
+    <div class="search-container">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" id="searchInput" class="search-input" placeholder="搜索经销商名称或地址..." aria-label="搜索经销商">
+    </div>
+    
+    <!-- 顶部横幅 -->
+    <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="茅台专卖店" class="header-banner">
+    
+    <!-- 筛选标签 -->
+    <div class="filter-tabs" id="filterTabs">
+      <div class="filter-tab active" data-region="all">全部</div>
+      <div class="filter-tab" data-region="昆明市">昆明市</div>
+      <div class="filter-tab" data-region="大理">大理</div>
+      <div class="filter-tab" data-region="丽江">丽江</div>
+      <div class="filter-tab" data-region="西双版纳">西双版纳</div>
+      <div class="filter-tab" data-region="其他">其他地区</div>
+    </div>
+    
+    <!-- 经销商列表标题 -->
+    <div class="section-header">
+      <div class="section-title">经销商列表</div>
+    </div>
+    
+    <!-- 加载动画 -->
+    <div id="loader" class="loader">
+      <i class="fas fa-spinner fa-3x"></i>
+      <p>正在加载经销商信息...</p>
+    </div>
+    
+    <!-- 经销商列表 -->
+    <ul id="dealersList" class="dealer-list"></ul>
+  </main>
+  
+  <!-- 底部导航栏 -->
+  <div class="tab-bar">
+    <a href="#home" class="tab-item active">
+      <i class="fas fa-home tab-icon"></i>
+      <span>首页</span>
+    </a>
+    <a href="#search" class="tab-item">
+      <i class="fas fa-search tab-icon"></i>
+      <span>搜索</span>
+    </a>
+    <a href="#map" class="tab-item">
+      <i class="fas fa-map-marked-alt tab-icon"></i>
+      <span>地图</span>
+    </a>
+    <a href="#about" class="tab-item">
+      <i class="fas fa-info-circle tab-icon"></i>
+      <span>关于</span>
+    </a>
+  </div>
+  
+  <!-- 页脚信息 -->
+  <footer class="text-center">
+    <div class="container">
+      <p class="small text-muted">© 2023 云南省茅台经销商信息系统 | 本网站信息仅供参考</p>
+    </div>
+  </footer>
+  
+  <!-- JavaScript 文件 -->
+  <script src="./js/app.js"></script>
+</body>
+</html> 

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>经销商详情</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- 自定义样式 -->
+  <link rel="stylesheet" href="common.css">
+  
+  <style>
+    .dealer-info {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+    
+    .dealer-name {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 16px;
+    }
+    
+    .header-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
+    }
+    
+    .detail-card {
+      padding: 0 0 16px 0;
+    }
+    
+    .detail-card .card-content {
+      padding: 16px;
+    }
+    
+    .map-container {
+      width: 100%;
+      height: 200px;
+      background-color: var(--gray-medium);
+      border-radius: var(--border-radius);
+      margin-bottom: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .map-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .map-pin {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--primary-color);
+      font-size: 30px;
+      filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
+    }
+    
+    .section-title {
+      font-size: 17px;
+      font-weight: 600;
+      margin: 24px 0 16px 0;
+      color: var(--text-color);
+    }
+    
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    
+    .product-card {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      overflow: hidden;
+    }
+    
+    .product-image {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+    
+    .product-info {
+      padding: 12px;
+    }
+    
+    .product-name {
+      font-weight: 600;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+    
+    .product-price {
+      color: var(--primary-color);
+      font-weight: 600;
+      font-size: 14px;
+    }
+    
+    .availability {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+    
+    .in-stock {
+      background-color: #e8f5e9;
+      color: #2e7d32;
+    }
+    
+    .low-stock {
+      background-color: #fff3e0;
+      color: #ef6c00;
+    }
+    
+    .back-button-container {
+      display: flex;
+      align-items: center;
+    }
+    
+    .business-hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+    }
+    
+    .business-hours-table tr {
+      border-bottom: 1px solid var(--gray-medium);
+    }
+    
+    .business-hours-table tr:last-child {
+      border-bottom: none;
+    }
+    
+    .business-hours-table td {
+      padding: 8px 0;
+      font-size: 14px;
+    }
+    
+    .business-hours-table td:first-child {
+      font-weight: 600;
+      width: 40%;
+    }
+    
+    .today {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <!-- iOS 状态栏 -->
+  <div class="ios-status-bar">
+    <div class="status-bar-left">
+      <div class="status-bar-time">14:30</div>
+    </div>
+    <div class="status-bar-right">
+      <i class="fas fa-signal"></i>
+      <i class="fas fa-wifi"></i>
+      <div class="status-bar-battery">
+        <div class="status-bar-battery-level"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 内容容器 -->
+  <div class="content-container">
+    <!-- 标题栏 -->
+    <div class="title-bar">
+      <div class="back-button-container">
+        <a href="home.html" class="back-button">
+          <i class="fas fa-chevron-left"></i>
+        </a>
+        <h1>经销商详情</h1>
+      </div>
+    </div>
+    
+    <!-- 经销商详情卡片 -->
+    <div class="card detail-card">
+      <img src="https://images.unsplash.com/photo-1566897963861-7dacdb145a92?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="茅台专卖店" class="header-image">
+      
+      <div class="card-content">
+        <div class="dealer-name">昆明市盘龙区茅台经销商</div>
+        
+        <div class="dealer-info">
+          <i class="fas fa-map-marker-alt list-item-icon"></i>
+          <div>云南省昆明市盘龙区北京路289号</div>
+        </div>
+        
+        <div class="dealer-info">
+          <i class="fas fa-phone list-item-icon"></i>
+          <div>0871-65982345</div>
+        </div>
+        
+        <div class="dealer-info">
+          <i class="fas fa-clock list-item-icon"></i>
+          <div>周一至周日 9:30-20:30</div>
+        </div>
+        
+        <div class="action-buttons">
+          <a href="javascript:void(0);" class="btn btn-primary" onclick="navigateToDealer(25.052123, 102.72698, '云南省昆明市盘龙区北京路289号')">
+            <i class="fas fa-map-marked-alt"></i> 导航到这里
+          </a>
+          <a href="javascript:void(0);" class="btn btn-success" onclick="callDealer('0871-65982345')">
+            <i class="fas fa-phone"></i> 拨打电话
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 地图区域 -->
+    <div class="section-title">位置地图</div>
+    <div class="map-container">
+      <img src="https://images.unsplash.com/photo-1569336415962-a4bd9f69c2a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2231&q=80" alt="地图" class="map-image">
+      <i class="fas fa-map-marker-alt map-pin"></i>
+    </div>
+    
+    <!-- 营业时间 -->
+    <div class="section-title">营业时间</div>
+    <div class="card">
+      <table class="business-hours-table">
+        <tr>
+          <td>周一</td>
+          <td>9:30 - 20:30</td>
+        </tr>
+        <tr>
+          <td>周二</td>
+          <td>9:30 - 20:30</td>
+        </tr>
+        <tr>
+          <td class="today">周三</td>
+          <td class="today">9:30 - 20:30</td>
+        </tr>
+        <tr>
+          <td>周四</td>
+          <td>9:30 - 20:30</td>
+        </tr>
+        <tr>
+          <td>周五</td>
+          <td>9:30 - 20:30</td>
+        </tr>
+        <tr>
+          <td>周六</td>
+          <td>9:30 - 20:30</td>
+        </tr>
+        <tr>
+          <td>周日</td>
+          <td>9:30 - 20:30</td>
+        </tr>
+      </table>
+    </div>
+    
+    <!-- 产品展示 -->
+    <div class="section-title">热门产品</div>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1626073770234-77b4b3577975?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80" alt="茅台酒" class="product-image">
+        <div class="product-info">
+          <div class="product-name">飞天茅台53度500ml</div>
+          <div class="product-price">¥1,499.00</div>
+          <div class="availability in-stock">有库存</div>
+        </div>
+      </div>
+      
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1629218079353-b022e298a90a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80" alt="茅台酒" class="product-image">
+        <div class="product-info">
+          <div class="product-name">茅台1935酒43度500ml</div>
+          <div class="product-price">¥889.00</div>
+          <div class="availability low-stock">库存紧张</div>
+        </div>
+      </div>
+      
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="茅台酒" class="product-image">
+        <div class="product-info">
+          <div class="product-name">珍品茅台酒50度500ml</div>
+          <div class="product-price">¥1,299.00</div>
+          <div class="availability in-stock">有库存</div>
+        </div>
+      </div>
+      
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1598963056828-679151fdf739?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="茅台酒" class="product-image">
+        <div class="product-info">
+          <div class="product-name">茅台王子酒53度500ml</div>
+          <div class="product-price">¥599.00</div>
+          <div class="availability in-stock">有库存</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 底部导航栏 -->
+  <div class="tab-bar">
+    <a href="home.html" class="tab-item">
+      <i class="fas fa-home tab-icon"></i>
+      <span>首页</span>
+    </a>
+    <a href="search.html" class="tab-item">
+      <i class="fas fa-search tab-icon"></i>
+      <span>搜索</span>
+    </a>
+    <a href="#map" class="tab-item">
+      <i class="fas fa-map-marked-alt tab-icon"></i>
+      <span>地图</span>
+    </a>
+    <a href="about.html" class="tab-item">
+      <i class="fas fa-info-circle tab-icon"></i>
+      <span>关于</span>
+    </a>
+  </div>
+  
+  <!-- JavaScript 文件 -->
+  <script src="common.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 获取URL参数
+      const dealerId = getUrlParam('id');
+      
+      // 实际项目中应该根据ID加载相应的经销商数据
+      // 这里仅作原型展示，不进行实际数据加载
+      console.log(`加载经销商ID: ${dealerId}`);
+    });
+  </script>
+</body>
+</html> 

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于我们</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- 自定义样式 -->
+  <link rel="stylesheet" href="common.css">
+  
+  <style>
+    .about-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px 0 40px;
+    }
+    
+    .logo-image {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 16px;
+    }
+    
+    .app-version {
+      color: var(--gray-dark);
+      font-size: 14px;
+      margin-top: 4px;
+    }
+    
+    .app-name {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+    
+    .section-title {
+      font-size: 17px;
+      font-weight: 600;
+      margin: 24px 0 16px 0;
+      color: var(--text-color);
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      text-decoration: none;
+      color: var(--text-color);
+    }
+    
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background-color: var(--gray-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+      color: var(--primary-color);
+      font-size: 18px;
+    }
+    
+    .contact-info {
+      flex: 1;
+    }
+    
+    .contact-label {
+      font-size: 14px;
+      color: var(--gray-dark);
+      margin-bottom: 2px;
+    }
+    
+    .contact-value {
+      font-weight: 500;
+    }
+    
+    .about-section {
+      margin-bottom: 24px;
+    }
+    
+    .about-text {
+      line-height: 1.6;
+      color: var(--text-color);
+      margin-bottom: 16px;
+    }
+    
+    .feature-list {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+    
+    .feature-item {
+      margin-bottom: 8px;
+      position: relative;
+    }
+    
+    .feature-item::before {
+      content: "•";
+      color: var(--primary-color);
+      font-weight: bold;
+      font-size: 18px;
+      position: absolute;
+      left: -15px;
+    }
+    
+    .button-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    
+    .share-button {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- iOS 状态栏 -->
+  <div class="ios-status-bar">
+    <div class="status-bar-left">
+      <div class="status-bar-time">14:30</div>
+    </div>
+    <div class="status-bar-right">
+      <i class="fas fa-signal"></i>
+      <i class="fas fa-wifi"></i>
+      <div class="status-bar-battery">
+        <div class="status-bar-battery-level"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 内容容器 -->
+  <div class="content-container">
+    <!-- 标题栏 -->
+    <div class="title-bar">
+      <div class="back-button-container">
+        <a href="home.html" class="back-button">
+          <i class="fas fa-chevron-left"></i>
+        </a>
+        <h1>关于我们</h1>
+      </div>
+    </div>
+    
+    <!-- Logo和应用信息 -->
+    <div class="about-logo">
+      <img src="https://raw.githubusercontent.com/username/repository-name/main/images/logo.svg" alt="茅台经销商Logo" class="logo-image">
+      <div class="app-name">云南茅台经销商信息</div>
+      <div class="app-version">版本 1.0.0</div>
+    </div>
+    
+    <!-- 应用简介 -->
+    <div class="about-section">
+      <div class="section-title">应用简介</div>
+      <div class="card">
+        <p class="about-text">
+          "云南茅台经销商信息"是一款专为云南省茅台爱好者打造的应用，提供全省茅台经销商的详细信息、位置导航以及一键电话联系功能。
+        </p>
+        
+        <p class="about-text">
+          我们致力于为用户提供最便捷的查询体验，帮助您轻松找到附近的茅台经销商。
+        </p>
+      </div>
+    </div>
+    
+    <!-- 主要功能 -->
+    <div class="about-section">
+      <div class="section-title">主要功能</div>
+      <div class="card">
+        <ul class="feature-list">
+          <li class="feature-item">查看云南省所有茅台经销商信息</li>
+          <li class="feature-item">一键导航到经销商地址</li>
+          <li class="feature-item">一键拨打经销商电话</li>
+          <li class="feature-item">搜索特定经销商</li>
+          <li class="feature-item">查看经销商热门产品</li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- 联系我们 -->
+    <div class="about-section">
+      <div class="section-title">联系我们</div>
+      <div class="card">
+        <a href="tel:4001234567" class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="contact-info">
+            <div class="contact-label">客服热线</div>
+            <div class="contact-value">400-123-4567</div>
+          </div>
+        </a>
+        
+        <a href="mailto:support@example.com" class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="contact-info">
+            <div class="contact-label">电子邮箱</div>
+            <div class="contact-value">support@example.com</div>
+          </div>
+        </a>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="contact-info">
+            <div class="contact-label">总部地址</div>
+            <div class="contact-value">云南省昆明市五华区xxx路xx号</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 分享按钮 -->
+    <div class="button-row">
+      <a href="javascript:void(0);" class="btn btn-outline share-button" onclick="alert('分享功能尚未实现')">
+        <i class="fas fa-share-alt"></i> 分享应用
+      </a>
+      <a href="javascript:void(0);" class="btn btn-primary share-button" onclick="alert('评分功能尚未实现')">
+        <i class="fas fa-star"></i> 给我们评分
+      </a>
+    </div>
+  </div>
+  
+  <!-- 底部导航栏 -->
+  <div class="tab-bar">
+    <a href="home.html" class="tab-item">
+      <i class="fas fa-home tab-icon"></i>
+      <span>首页</span>
+    </a>
+    <a href="search.html" class="tab-item">
+      <i class="fas fa-search tab-icon"></i>
+      <span>搜索</span>
+    </a>
+    <a href="#map" class="tab-item">
+      <i class="fas fa-map-marked-alt tab-icon"></i>
+      <span>地图</span>
+    </a>
+    <a href="#about" class="tab-item active">
+      <i class="fas fa-info-circle tab-icon"></i>
+      <span>关于</span>
+    </a>
+  </div>
+  
+  <!-- JavaScript 文件 -->
+  <script src="common.js"></script>
+</body>
+</html> 

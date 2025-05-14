@@ -1,0 +1,10 @@
+<!-- 
+由于无法直接创建二进制的PNG文件，这里只是一个说明文件。
+在实际部署时，您需要：
+1. 将SVG文件转换为PNG文件
+2. 或者使用在线工具创建一个茅台酒瓶形状的logo
+3. 或者直接在HTML中使用我们已经创建的SVG文件：
+   - 将index.html中的 <img src="./images/logo.png"> 改为 <img src="./images/logo.svg">
+
+您也可以使用任何图形设计工具(如Photoshop、GIMP等)创建一个100x100像素的PNG格式logo。
+--> 

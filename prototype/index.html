@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>茅台经销商原型设计</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    body {
+      background-color: #f0f2f5;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    
+    .prototype-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .phone-wrapper {
+      width: 390px;
+      height: 844px;
+      background-color: #1a1a1a;
+      border-radius: 50px;
+      padding: 12px;
+      position: relative;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+    }
+    
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      border-radius: 38px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .phone-notch {
+      position: absolute;
+      width: 150px;
+      height: 30px;
+      background-color: #1a1a1a;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      z-index: 100;
+    }
+    
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    
+    .screen-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #b12704;
+      margin-bottom: 1rem;
+    }
+    
+    .header p {
+      font-size: 1.25rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="prototype-container">
+    <div class="header">
+      <h1>茅台经销商信息展示系统</h1>
+      <p>高保真原型设计 - iPhone 15 Pro 样式</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- 首页 -->
+      <div class="flex flex-col items-center">
+        <div class="screen-title">首页 - 经销商列表</div>
+        <div class="phone-wrapper">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <iframe src="home.html"></iframe>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 详情页 -->
+      <div class="flex flex-col items-center">
+        <div class="screen-title">详情页 - 经销商信息</div>
+        <div class="phone-wrapper">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <iframe src="detail.html"></iframe>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 搜索结果页 -->
+      <div class="flex flex-col items-center">
+        <div class="screen-title">搜索结果页</div>
+        <div class="phone-wrapper">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <iframe src="search.html"></iframe>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 关于页面 -->
+      <div class="flex flex-col items-center">
+        <div class="screen-title">关于页面</div>
+        <div class="phone-wrapper">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <iframe src="about.html"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html> 

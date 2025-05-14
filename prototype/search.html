@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>搜索结果</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- 自定义样式 -->
+  <link rel="stylesheet" href="common.css">
+  
+  <style>
+    .dealer-info {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+    
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    
+    .distance-badge {
+      background-color: var(--gray-medium);
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      color: var(--gray-dark);
+      font-weight: 600;
+    }
+    
+    .dealer-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 8px;
+    }
+    
+    .search-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    
+    .search-count {
+      margin-top: 8px;
+      color: var(--gray-dark);
+      font-size: 14px;
+    }
+    
+    .search-keyword {
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+    
+    .no-results {
+      text-align: center;
+      padding: 32px 16px;
+      color: var(--gray-dark);
+    }
+    
+    .no-results i {
+      font-size: 48px;
+      margin-bottom: 16px;
+      color: var(--gray-medium);
+    }
+    
+    .no-results h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: var(--text-color);
+    }
+    
+    .no-results p {
+      margin-bottom: 16px;
+    }
+    
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .filter-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      background-color: var(--white);
+      border-radius: 16px;
+      font-size: 14px;
+      white-space: nowrap;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .filter-chip.active {
+      background-color: var(--primary-color);
+      color: var(--white);
+    }
+  </style>
+</head>
+<body>
+  <!-- iOS 状态栏 -->
+  <div class="ios-status-bar">
+    <div class="status-bar-left">
+      <div class="status-bar-time">14:30</div>
+    </div>
+    <div class="status-bar-right">
+      <i class="fas fa-signal"></i>
+      <i class="fas fa-wifi"></i>
+      <div class="status-bar-battery">
+        <div class="status-bar-battery-level"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 内容容器 -->
+  <div class="content-container">
+    <!-- 标题栏 -->
+    <div class="title-bar">
+      <div class="back-button-container">
+        <a href="home.html" class="back-button">
+          <i class="fas fa-chevron-left"></i>
+        </a>
+        <h1>搜索结果</h1>
+      </div>
+    </div>
+    
+    <!-- 搜索栏 -->
+    <div class="search-container">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" class="search-input" id="searchInput" placeholder="搜索经销商名称或地址...">
+    </div>
+    
+    <!-- 筛选栏 -->
+    <div class="filter-bar">
+      <div class="filter-chip active">全部</div>
+      <div class="filter-chip">距离最近</div>
+      <div class="filter-chip">评分最高</div>
+      <div class="filter-chip">昆明市</div>
+      <div class="filter-chip">大理</div>
+      <div class="filter-chip">丽江</div>
+      <div class="filter-chip">西双版纳</div>
+    </div>
+    
+    <!-- 搜索结果信息 -->
+    <div class="search-header">
+      <div>
+        <div id="searchKeyword" class="search-keyword">昆明</div>
+        <div id="searchCount" class="search-count">找到 2 个结果</div>
+      </div>
+    </div>
+    
+    <!-- 搜索结果列表 -->
+    <div id="searchResults">
+      <!-- 经销商卡片1 -->
+      <div class="card" onclick="window.location.href='detail.html?id=1'">
+        <div class="card-header">
+          <div class="dealer-name">昆明市五华区茅台专卖店</div>
+          <div class="distance-badge">1.2公里</div>
+        </div>
+        
+        <div class="dealer-info">
+          <i class="fas fa-map-marker-alt list-item-icon"></i>
+          <div>云南省昆明市五华区人民中路17号</div>
+        </div>
+        
+        <div class="dealer-info">
+          <i class="fas fa-phone list-item-icon"></i>
+          <div>0871-63612345</div>
+        </div>
+        
+        <div class="action-buttons">
+          <a href="javascript:void(0);" class="btn btn-outline" onclick="event.stopPropagation(); window.location.href='detail.html?id=1'">
+            <i class="fas fa-info-circle"></i> 查看详情
+          </a>
+        </div>
+      </div>
+      
+      <!-- 经销商卡片2 -->
+      <div class="card" onclick="window.location.href='detail.html?id=2'">
+        <div class="card-header">
+          <div class="dealer-name">昆明市盘龙区茅台经销商</div>
+          <div class="distance-badge">3.5公里</div>
+        </div>
+        
+        <div class="dealer-info">
+          <i class="fas fa-map-marker-alt list-item-icon"></i>
+          <div>云南省昆明市盘龙区北京路289号</div>
+        </div>
+        
+        <div class="dealer-info">
+          <i class="fas fa-phone list-item-icon"></i>
+          <div>0871-65982345</div>
+        </div>
+        
+        <div class="action-buttons">
+          <a href="javascript:void(0);" class="btn btn-outline" onclick="event.stopPropagation(); window.location.href='detail.html?id=2'">
+            <i class="fas fa-info-circle"></i> 查看详情
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 无结果时显示 -->
+    <div id="noResults" class="no-results" style="display: none;">
+      <i class="fas fa-search"></i>
+      <h3>未找到匹配结果</h3>
+      <p>请尝试其他关键词或更广泛的搜索条件</p>
+      <a href="home.html" class="btn btn-primary">
+        <i class="fas fa-home"></i> 返回首页
+      </a>
+    </div>
+    
+    <!-- 加载中图标 -->
+    <div id="loader" class="loader" style="display: none;">
+      <i class="fas fa-spinner"></i>
+      <div>正在搜索...</div>
+    </div>
+  </div>
+  
+  <!-- 底部导航栏 -->
+  <div class="tab-bar">
+    <a href="home.html" class="tab-item">
+      <i class="fas fa-home tab-icon"></i>
+      <span>首页</span>
+    </a>
+    <a href="#search" class="tab-item active">
+      <i class="fas fa-search tab-icon"></i>
+      <span>搜索</span>
+    </a>
+    <a href="#map" class="tab-item">
+      <i class="fas fa-map-marked-alt tab-icon"></i>
+      <span>地图</span>
+    </a>
+    <a href="about.html" class="tab-item">
+      <i class="fas fa-info-circle tab-icon"></i>
+      <span>关于</span>
+    </a>
+  </div>
+  
+  <!-- JavaScript 文件 -->
+  <script src="common.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 获取URL参数中的关键词
+      const keyword = getUrlParam('keyword');
+      
+      if (keyword) {
+        // 设置搜索框的值
+        document.getElementById('searchInput').value = keyword;
+        
+        // 更新搜索关键词显示
+        document.getElementById('searchKeyword').textContent = keyword;
+        
+        // 显示加载动画
+        toggleLoader(true);
+        
+        // 模拟搜索过程
+        setTimeout(() => {
+          // 隐藏加载动画
+          toggleLoader(false);
+          
+          // 这里只是原型，实际项目中应该根据关键词过滤数据
+          if (keyword.toLowerCase().includes('大理') || keyword.toLowerCase().includes('丽江')) {
+            // 如果关键词包含"大理"或"丽江"，显示无结果
+            document.getElementById('searchResults').style.display = 'none';
+            document.getElementById('noResults').style.display = 'block';
+            document.getElementById('searchCount').textContent = '找到 0 个结果';
+          } else {
+            // 否则显示默认结果
+            document.getElementById('searchResults').style.display = 'block';
+            document.getElementById('noResults').style.display = 'none';
+          }
+        }, 1000);
+      }
+      
+      // 监听搜索框输入
+      document.getElementById('searchInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          const newKeyword = this.value.trim();
+          if (newKeyword) {
+            window.location.href = `search.html?keyword=${encodeURIComponent(newKeyword)}`;
+          }
+        }
+      });
+      
+      // 点击筛选选项
+      const filterChips = document.querySelectorAll('.filter-chip');
+      filterChips.forEach(chip => {
+        chip.addEventListener('click', function() {
+          // 移除所有active类
+          filterChips.forEach(c => c.classList.remove('active'));
+          // 添加active类到当前点击的chip
+          this.classList.add('active');
+          
+          // 在实际项目中，这里应该触发重新搜索
+          console.log('筛选条件:', this.textContent);
+        });
+      });
+    });
+  </script>
+</body>
+</html> 

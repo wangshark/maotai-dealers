@@ -1,0 +1,7 @@
+.DS_Store
+.cursorrules
+node_modules/
+.vscode/
+.idea/
+*.log
+Thumbs.db 
