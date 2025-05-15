@@ -257,7 +257,7 @@ function renderDealersList(dealers) {
         <div class="dealer-phone">${dealer.phone}</div>
       </div>
       <div class="dealer-actions">
-        <a href="javascript:void(0);" class="action-icon navigate" onclick="navigateToDealer(${dealer.location.latitude}, ${dealer.location.longitude}, '${dealer.address}')">
+        <a href="javascript:void(0);" class="action-icon navigate" onclick="navigateToDealer('${dealer.address}')">
           <i class="fas fa-map-marker-alt"></i>
         </a>
         <a href="tel:${dealer.phone}" class="action-icon call">
@@ -282,11 +282,9 @@ function renderDealersList(dealers) {
 
 /**
  * 导航到经销商位置
- * @param {number} lat - 纬度
- * @param {number} lng - 经度
  * @param {string} address - 地址
  */
-function navigateToDealer(lat, lng, address) {
+function navigateToDealer(address) {
   // 显示导航选择对话框
   if (!document.getElementById('navigationDialog')) {
     // 创建导航选择对话框
@@ -329,7 +327,7 @@ function navigateToDealer(lat, lng, address) {
     navAppButtons.forEach(button => {
       button.addEventListener('click', (e) => {
         const navType = e.currentTarget.getAttribute('data-type');
-        openNavigation(navType, lat, lng, address);
+        openNavigation(navType, address);
         dialog.style.display = 'none';
       });
     });
@@ -342,11 +340,9 @@ function navigateToDealer(lat, lng, address) {
 /**
  * 打开导航应用
  * @param {string} type - 导航应用类型
- * @param {number} lat - 纬度
- * @param {number} lng - 经度
  * @param {string} address - 地址
  */
-function openNavigation(type, lat, lng, address) {
+function openNavigation(type, address) {
   let url = '';
   
   // 对地址进行编码，确保URL安全
@@ -354,24 +350,24 @@ function openNavigation(type, lat, lng, address) {
   
   switch(type) {
     case 'amap':
-      // 高德地图 - 优先使用地址
-      url = `https://uri.amap.com/navigation?to=${lng},${lat},${encodedAddress}&mode=car&callnative=1`;
+      // 高德地图 - 只使用地址
+      url = `https://uri.amap.com/navigation?to=,,${encodedAddress}&mode=car&callnative=1`;
       break;
     case 'baidu':
-      // 百度地图 - 优先使用地址
-      url = `https://api.map.baidu.com/direction?destination=name:${encodedAddress}|latlng:${lat},${lng}&mode=driving&coord_type=bd09ll&output=html&src=webapp.baidu.openAPIdemo`;
+      // 百度地图 - 只使用地址
+      url = `https://api.map.baidu.com/direction?destination=name:${encodedAddress}&mode=driving&output=html&src=webapp.baidu.openAPIdemo`;
       break;
     case 'apple':
-      // 苹果地图 - 优先使用地址
-      url = `https://maps.apple.com/?daddr=${encodedAddress}&ll=${lat},${lng}&z=16`;
+      // 苹果地图 - 只使用地址
+      url = `https://maps.apple.com/?daddr=${encodedAddress}&dirflg=d`;
       break;
     case 'tencent':
-      // 腾讯地图 - 优先使用地址
-      url = `https://apis.map.qq.com/uri/v1/routeplan?type=drive&to=${encodedAddress}&tocoord=${lat},${lng}&referer=myapp`;
+      // 腾讯地图 - 只使用地址
+      url = `https://apis.map.qq.com/uri/v1/routeplan?type=drive&to=${encodedAddress}&referer=myapp`;
       break;
     default:
       // 默认使用高德地图
-      url = `https://uri.amap.com/navigation?to=${lng},${lat},${encodedAddress}&mode=car&callnative=1`;
+      url = `https://uri.amap.com/navigation?to=,,${encodedAddress}&mode=car&callnative=1`;
   }
   
   window.location.href = url;
