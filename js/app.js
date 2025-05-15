@@ -257,7 +257,7 @@ function renderDealersList(dealers) {
         <div class="dealer-phone">${dealer.phone}</div>
       </div>
       <div class="dealer-actions">
-        <a href="javascript:void(0);" class="action-icon navigate" onclick="showMapWithNavigateButton('${dealer.mapName || dealer.address}')">
+        <a href="javascript:void(0);" class="action-icon navigate" onclick="showMapWithNavigateButton('${dealer.mapName || dealer.address}', ${index})">
           <i class="fas fa-map-marker-alt"></i>
         </a>
         <a href="tel:${dealer.phone}" class="action-icon call">
@@ -283,16 +283,26 @@ function renderDealersList(dealers) {
 /**
  * 显示地图位置和立即导航按钮
  * @param {string} poiName - 地图上的POI名称
+ * @param {number} index - 经销商索引
  */
-function showMapWithNavigateButton(poiName) {
+function showMapWithNavigateButton(poiName, index) {
+  // 获取经销商数据
+  const dealer = dealersData[index];
+  if (!dealer || !dealer.location) {
+    console.error('无法获取经销商坐标信息');
+    return;
+  }
+  
+  // 准备经纬度坐标
+  const longitude = dealer.location.longitude;
+  const latitude = dealer.location.latitude;
+  const position = `${longitude},${latitude}`;
+  
   // 使用高德地图 URI API，直接显示位置并提供导航按钮
   const encodedPoiName = encodeURIComponent(poiName);
   
-  // 使用p=起点,终点格式，不指定起点则使用当前位置作为起点
-  // 设置callnative=1确保在移动设备上直接打开高德地图应用
-  // 设置type=present_mapview来显示地图视图，而不是直接开始导航
-  // 由于type=present_mapview参数，界面会显示"开始导航"按钮
-  const url = `https://uri.amap.com/marker?position=&name=${encodedPoiName}&callnative=1&sourceApplication=茅台经销商导航`;
+  // 使用marker接口，需要提供精确的position坐标
+  const url = `https://uri.amap.com/marker?position=${position}&name=${encodedPoiName}&callnative=1&sourceApplication=茅台经销商导航`;
   
   // 在新窗口中打开高德地图
   window.open(url, '_blank');

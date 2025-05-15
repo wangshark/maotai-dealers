@@ -331,9 +331,23 @@ function addToHistory(dealerId) {
 function navigateToDealer(address) {
   console.log(`准备导航到地址: ${address}`);
   
+  // 获取当前经销商数据
+  const dealerId = parseInt(currentDealerId);
+  const dealer = dealersData[dealerId];
+  
+  if (!dealer || !dealer.location) {
+    console.error('无法获取经销商坐标信息');
+    return;
+  }
+  
+  // 准备经纬度坐标
+  const longitude = dealer.location.longitude;
+  const latitude = dealer.location.latitude;
+  const position = `${longitude},${latitude}`;
+  
   // 直接使用高德地图URI API打开标记点位置
   const encodedAddress = encodeURIComponent(address);
-  const url = `https://uri.amap.com/marker?position=&name=${encodedAddress}&callnative=1&sourceApplication=茅台经销商导航`;
+  const url = `https://uri.amap.com/marker?position=${position}&name=${encodedAddress}&callnative=1&sourceApplication=茅台经销商导航`;
   
   // 在新窗口中打开地图
   window.open(url, '_blank');

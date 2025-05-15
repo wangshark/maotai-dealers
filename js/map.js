@@ -101,7 +101,7 @@ function addDealerMarkers() {
         <div class="map-info-address">${dealer.address}</div>
         <div class="map-info-phone">${dealer.phone}</div>
         <div class="map-info-actions">
-          <a href="javascript:void(0);" class="map-info-btn navigate" onclick="navigateToDealer('${dealer.address}')">
+          <a href="javascript:void(0);" class="map-info-btn navigate" onclick="navigateToDealer('${dealer.address}', ${dealer.location.longitude}, ${dealer.location.latitude})">
             <i class="fas fa-map-marker-alt"></i> 导航
           </a>
           <a href="tel:${dealer.phone}" class="map-info-btn call">
@@ -150,13 +150,18 @@ function fitMapToMarkers() {
 /**
  * 导航到经销商位置
  * @param {string} address - 地址
+ * @param {number} longitude - 经度
+ * @param {number} latitude - 纬度
  */
-function navigateToDealer(address) {
-  console.log(`准备导航到: 地址: ${address}`);
+function navigateToDealer(address, longitude, latitude) {
+  console.log(`准备导航到: 地址: ${address}, 坐标: [${longitude}, ${latitude}]`);
+  
+  // 准备经纬度坐标
+  const position = `${longitude},${latitude}`;
   
   // 直接使用高德地图URI API打开标记点位置
   const encodedAddress = encodeURIComponent(address);
-  const url = `https://uri.amap.com/marker?position=&name=${encodedAddress}&callnative=1&sourceApplication=茅台经销商导航`;
+  const url = `https://uri.amap.com/marker?position=${position}&name=${encodedAddress}&callnative=1&sourceApplication=茅台经销商导航`;
   
   // 在新窗口中打开地图
   window.open(url, '_blank');
