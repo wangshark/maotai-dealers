@@ -257,7 +257,7 @@ function renderDealersList(dealers) {
         <div class="dealer-phone">${dealer.phone}</div>
       </div>
       <div class="dealer-actions">
-        <a href="javascript:void(0);" class="action-icon navigate" onclick="navigateToDealer('${dealer.address}')">
+        <a href="javascript:void(0);" class="action-icon navigate" onclick="navigateToDealer('${dealer.mapName || dealer.name}')">
           <i class="fas fa-map-marker-alt"></i>
         </a>
         <a href="tel:${dealer.phone}" class="action-icon call">
@@ -340,34 +340,34 @@ function navigateToDealer(address) {
 /**
  * 打开导航应用
  * @param {string} type - 导航应用类型
- * @param {string} address - 地址
+ * @param {string} poiName - 地图上的POI名称
  */
-function openNavigation(type, address) {
+function openNavigation(type, poiName) {
   let url = '';
   
-  // 对地址进行编码，确保URL安全
-  const encodedAddress = encodeURIComponent(address);
+  // 对POI名称进行编码，确保URL安全
+  const encodedPoiName = encodeURIComponent(poiName);
   
   switch(type) {
     case 'amap':
-      // 高德地图 - 只使用地址
-      url = `https://uri.amap.com/navigation?to=,,${encodedAddress}&mode=car&callnative=1`;
+      // 高德地图 - 使用POI搜索
+      url = `https://uri.amap.com/search?keyword=${encodedPoiName}&callnative=1`;
       break;
     case 'baidu':
-      // 百度地图 - 只使用地址
-      url = `https://api.map.baidu.com/direction?destination=name:${encodedAddress}&mode=driving&output=html&src=webapp.baidu.openAPIdemo`;
+      // 百度地图 - 使用POI搜索
+      url = `https://api.map.baidu.com/place/search?query=${encodedPoiName}&region=全国&output=html&src=webapp.baidu.openAPIdemo`;
       break;
     case 'apple':
-      // 苹果地图 - 只使用地址
-      url = `https://maps.apple.com/?daddr=${encodedAddress}&dirflg=d`;
+      // 苹果地图 - 使用POI搜索
+      url = `https://maps.apple.com/?q=${encodedPoiName}`;
       break;
     case 'tencent':
-      // 腾讯地图 - 只使用地址
-      url = `https://apis.map.qq.com/uri/v1/routeplan?type=drive&to=${encodedAddress}&referer=myapp`;
+      // 腾讯地图 - 使用POI搜索
+      url = `https://apis.map.qq.com/uri/v1/search?keyword=${encodedPoiName}&referer=myapp`;
       break;
     default:
       // 默认使用高德地图
-      url = `https://uri.amap.com/navigation?to=,,${encodedAddress}&mode=car&callnative=1`;
+      url = `https://uri.amap.com/search?keyword=${encodedPoiName}&callnative=1`;
   }
   
   window.location.href = url;
