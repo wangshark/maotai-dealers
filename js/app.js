@@ -257,7 +257,7 @@ function renderDealersList(dealers) {
         <div class="dealer-phone">${dealer.phone}</div>
       </div>
       <div class="dealer-actions">
-        <a href="javascript:void(0);" class="action-icon navigate" onclick="navigateToDealer('${dealer.mapName || dealer.name}')">
+        <a href="javascript:void(0);" class="action-icon navigate" onclick="showMapWithNavigateButton('${dealer.mapName || dealer.name}')">
           <i class="fas fa-map-marker-alt"></i>
         </a>
         <a href="tel:${dealer.phone}" class="action-icon call">
@@ -281,10 +281,70 @@ function renderDealersList(dealers) {
 }
 
 /**
+ * 显示地图位置和立即导航按钮
+ * @param {string} poiName - 地图上的POI名称
+ */
+function showMapWithNavigateButton(poiName) {
+  // 直接打开高德地图显示位置
+  const encodedPoiName = encodeURIComponent(poiName);
+  const url = `https://uri.amap.com/search?keyword=${encodedPoiName}&callnative=1`;
+  
+  // 在新窗口中打开地图
+  window.open(url, '_blank');
+  
+  // 显示立即导航对话框
+  setTimeout(() => {
+    // 如果已经存在导航对话框，先移除它
+    const existingDialog = document.getElementById('navigationDialog');
+    if (existingDialog) {
+      existingDialog.remove();
+    }
+    
+    // 创建新的导航选择对话框
+    const dialog = document.createElement('div');
+    dialog.id = 'navigationDialog';
+    dialog.className = 'navigation-dialog';
+    dialog.innerHTML = `
+      <div class="navigation-dialog-content">
+        <h3>选择导航方式</h3>
+        <button class="navigate-now-btn" id="navigateNowBtn">立即导航</button>
+        <button class="nav-cancel-btn">取消</button>
+      </div>
+    `;
+    document.body.appendChild(dialog);
+    
+    // 添加点击事件
+    dialog.querySelector('.nav-cancel-btn').addEventListener('click', () => {
+      dialog.style.display = 'none';
+    });
+    
+    // 为立即导航按钮添加点击事件
+    dialog.querySelector('#navigateNowBtn').addEventListener('click', () => {
+      showNavigationOptions(poiName);
+      dialog.style.display = 'none';
+    });
+    
+    // 显示对话框
+    dialog.style.display = 'flex';
+  }, 1000); // 延迟1秒显示导航对话框，给地图加载时间
+}
+
+/**
  * 导航到经销商位置
  * @param {string} poiName - 地图上的POI名称
  */
 function navigateToDealer(poiName) {
+  // 直接打开高德地图显示位置
+  const encodedPoiName = encodeURIComponent(poiName);
+  const url = `https://uri.amap.com/search?keyword=${encodedPoiName}&callnative=1`;
+  window.location.href = url;
+}
+
+/**
+ * 显示导航选择对话框
+ * @param {string} poiName - 地图上的POI名称
+ */
+function showNavigationOptions(poiName) {
   // 如果已经存在导航对话框，先移除它
   const existingDialog = document.getElementById('navigationDialog');
   if (existingDialog) {
@@ -310,10 +370,6 @@ function navigateToDealer(poiName) {
         <button class="nav-app-btn" data-type="apple">
           <i class="fas fa-map-marked-alt"></i>
           <span>苹果地图</span>
-        </button>
-        <button class="nav-app-btn" data-type="tencent">
-          <i class="fas fa-map-marked-alt"></i>
-          <span>腾讯地图</span>
         </button>
       </div>
       <button class="nav-cancel-btn">取消</button>
@@ -363,10 +419,6 @@ function openNavigation(type, poiName) {
     case 'apple':
       // 苹果地图 - 使用POI搜索
       url = `https://maps.apple.com/?q=${encodedPoiName}`;
-      break;
-    case 'tencent':
-      // 腾讯地图 - 使用POI搜索
-      url = `https://apis.map.qq.com/uri/v1/search?keyword=${encodedPoiName}&referer=myapp`;
       break;
     default:
       // 默认使用高德地图

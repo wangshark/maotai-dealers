@@ -486,7 +486,7 @@ footer {
 
 .navigation-apps {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 15px;
   margin-bottom: 20px;
 }
@@ -533,4 +533,27 @@ footer {
 
 .nav-cancel-btn:hover {
   background-color: #e6e6e6;
+}
+
+/* 立即导航按钮 */
+.navigate-now-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, var(--primary-color), #8b0000);
+  color: white;
+  text-align: center;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(168, 28, 7, 0.3);
+}
+
+.navigate-now-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(168, 28, 7, 0.4);
 } 
