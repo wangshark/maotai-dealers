@@ -41,7 +41,7 @@ function initMap() {
  * 加载经销商数据
  */
 function loadDealersData() {
-  fetch('../data/dealers.json')
+  fetch('./data/dealers.json')
     .then(response => {
       if (!response.ok) {
         throw new Error('网络请求失败');
@@ -79,12 +79,9 @@ function addDealerMarkers() {
     const marker = new AMap.Marker({
       position: [dealer.location.longitude, dealer.location.latitude],
       title: dealer.name,
-      icon: new AMap.Icon({
-        size: new AMap.Size(40, 50),
-        image: '../images/marker.png',
-        imageSize: new AMap.Size(40, 50)
-      }),
-      offset: new AMap.Pixel(-20, -50),
+      // 使用默认标记，添加自定义样式
+      content: `<div class="custom-marker"><span>${index + 1}</span></div>`,
+      offset: new AMap.Pixel(-15, -30),
       extData: {
         id: index,
         dealer: dealer
@@ -111,7 +108,7 @@ function addDealerMarkers() {
     // 创建信息窗体
     const infoWindow = new AMap.InfoWindow({
       content: infoWindowContent,
-      offset: new AMap.Pixel(0, -50)
+      offset: new AMap.Pixel(0, -30)
     });
     
     // 绑定点击事件

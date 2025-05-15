@@ -29,6 +29,26 @@
   background-color: var(--gray-light);
 }
 
+/* 自定义地图标记 */
+.custom-marker {
+  background-color: var(--primary-color);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: white;
+  text-align: center;
+  line-height: 30px;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  border: 2px solid white;
+  cursor: pointer;
+}
+
+.custom-marker span {
+  display: block;
+  font-size: 14px;
+}
+
 /* 地图信息窗口样式 */
 .map-info-window {
   padding: 10px;
