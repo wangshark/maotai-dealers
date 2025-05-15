@@ -1,0 +1,91 @@
+/* 地图页面样式 */
+.map-container {
+  width: 100%;
+  height: calc(100vh - 200px);
+  min-height: 400px;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  position: fixed;
+  top: 90px;
+  left: 15px;
+  z-index: 100;
+  background-color: var(--white);
+  color: var(--primary-color);
+  padding: 8px 15px;
+  border-radius: 20px;
+  box-shadow: var(--box-shadow);
+  text-decoration: none;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.back-button:hover {
+  background-color: var(--gray-light);
+}
+
+/* 地图信息窗口样式 */
+.map-info-window {
+  padding: 10px;
+  max-width: 250px;
+}
+
+.map-info-title {
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.map-info-address {
+  font-size: 13px;
+  color: var(--gray-dark);
+  margin-bottom: 5px;
+}
+
+.map-info-phone {
+  font-size: 13px;
+  color: var(--gray-dark);
+  margin-bottom: 10px;
+}
+
+.map-info-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.map-info-btn {
+  flex: 1;
+  padding: 6px 0;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 12px;
+  text-decoration: none;
+  color: white;
+}
+
+.map-info-btn.navigate {
+  background-color: var(--primary-color);
+}
+
+.map-info-btn.call {
+  background-color: var(--success-color);
+}
+
+/* 响应式设计 */
+@media (max-width: 576px) {
+  .map-container {
+    height: calc(100vh - 180px);
+  }
+  
+  .back-button {
+    top: 80px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+} 

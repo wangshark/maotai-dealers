@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="50" viewBox="0 0 40 50">
+  <style>
+    .marker {
+      fill: #b12704;
+      stroke: #ffffff;
+      stroke-width: 2;
+    }
+    .inner {
+      fill: #ffffff;
+    }
+  </style>
+  
+  <!-- 标记主体 -->
+  <path class="marker" d="M20,2 C9,2 2,9 2,20 C2,31 20,48 20,48 C20,48 38,31 38,20 C38,9 31,2 20,2 Z" />
+  
+  <!-- 内部圆形 -->
+  <circle class="inner" cx="20" cy="20" r="8" />
+</svg> 

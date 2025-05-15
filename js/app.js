@@ -6,6 +6,7 @@
 // 全局变量
 let dealersData = [];
 let currentFilter = 'all';
+let searchTimeout;
 
 // 页面加载完成后执行
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,10 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // 加载经销商数据
   loadDealersData();
   
-  // 更新状态栏时间
-  updateStatusBarTime();
-  setInterval(updateStatusBarTime, 60000); // 每分钟更新一次
-  
   // 初始化搜索功能
   initSearchFunction();
   
@@ -27,29 +24,24 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * 更新状态栏时间
- */
-function updateStatusBarTime() {
-  const timeElement = document.querySelector('.status-bar-time');
-  if (timeElement) {
-    const now = new Date();
-    let hours = now.getHours();
-    let minutes = now.getMinutes();
-    
-    // 格式化时间为两位数
-    hours = hours < 10 ? '0' + hours : hours;
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    
-    timeElement.textContent = `${hours}:${minutes}`;
-  }
-}
-
-/**
  * 初始化搜索功能
  */
 function initSearchFunction() {
   const searchInput = document.getElementById('searchInput');
   if (searchInput) {
+    // 监听输入事件，实现实时搜索
+    searchInput.addEventListener('input', (e) => {
+      // 清除之前的定时器
+      clearTimeout(searchTimeout);
+      
+      // 设置新的定时器，延迟300ms执行搜索
+      // 这样可以避免用户快速输入时频繁搜索
+      searchTimeout = setTimeout(() => {
+        searchDealers();
+      }, 300);
+    });
+    
+    // 监听回车键
     searchInput.addEventListener('keyup', (e) => {
       if (e.key === 'Enter') {
         searchDealers();
@@ -220,7 +212,33 @@ function searchDealers() {
     return dealer.name.toLowerCase().includes(keyword) || 
            dealer.address.toLowerCase().includes(keyword);
   });
+
+  // 对搜索结果进行排序，优先显示名称匹配的结果
+  const sortedDealers = filteredDealers.sort((a, b) => {
+    const aNameMatch = a.name.toLowerCase().includes(keyword);
+    const bNameMatch = b.name.toLowerCase().includes(keyword);
+    
+    // 如果a的名称匹配而b不匹配，a排在前面
+    if (aNameMatch && !bNameMatch) return -1;
+    // 如果b的名称匹配而a不匹配，b排在前面
+    if (!aNameMatch && bNameMatch) return 1;
+    
+    // 如果都匹配或都不匹配，按名称字母顺序排序
+    return a.name.localeCompare(b.name);
+  });
   
-  // 渲染过滤后的经销商列表
-  renderDealersList(filteredDealers);
+  // 渲染排序后的经销商列表
+  renderDealersList(sortedDealers);
+  
+  // 显示搜索结果数量
+  const resultCount = sortedDealers.length;
+  const dealersListElement = document.getElementById('dealersList');
+  
+  if (resultCount > 0) {
+    // 在列表前添加搜索结果数量提示
+    const resultInfo = document.createElement('div');
+    resultInfo.className = 'search-result-info';
+    resultInfo.textContent = `找到 ${resultCount} 家符合"${keyword}"的经销商`;
+    dealersListElement.insertBefore(resultInfo, dealersListElement.firstChild);
+  }
 } 

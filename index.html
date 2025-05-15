@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>云南省茅台经销商信息</title>
+  <title>贵州茅台云南省经销商名录</title>
   
   <!-- Font Awesome 图标 -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
@@ -19,30 +19,13 @@
   <meta name="keywords" content="云南,茅台,经销商,导航,电话">
 </head>
 <body>
-  <!-- iOS 状态栏模拟 -->
-  <div class="ios-status-bar">
-    <div class="status-bar-left">
-      <div class="status-bar-time">14:30</div>
-    </div>
-    <div class="status-bar-right">
-      <i class="fas fa-signal"></i>
-      <i class="fas fa-wifi"></i>
-      <div class="status-bar-battery">
-        <div class="status-bar-battery-level"></div>
-      </div>
-    </div>
-  </div>
-  
   <!-- 页面头部 -->
   <header>
     <div class="container">
       <div class="page-header">
         <div class="logo-container">
           <img src="./images/logo.svg" alt="茅台Logo" class="logo">
-          <div class="app-title">贵州茅台云南经销商</div>
-        </div>
-        <div class="notification-icon">
-          <i class="fas fa-bell"></i>
+          <div class="app-title">贵州茅台云南省经销商名录</div>
         </div>
       </div>
     </div>
@@ -57,21 +40,24 @@
     </div>
     
     <!-- 顶部横幅 -->
-    <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="茅台专卖店" class="header-banner">
+    <img src="./images/banner.jpg" alt="茅台专卖店" class="header-banner">
     
     <!-- 筛选标签 -->
     <div class="filter-tabs" id="filterTabs">
       <div class="filter-tab active" data-region="all">全部</div>
       <div class="filter-tab" data-region="昆明市">昆明市</div>
       <div class="filter-tab" data-region="大理">大理</div>
-      <div class="filter-tab" data-region="丽江">丽江</div>
-      <div class="filter-tab" data-region="西双版纳">西双版纳</div>
+      <div class="filter-tab" data-region="曲靖市">曲靖市</div>
+      <div class="filter-tab" data-region="玉溪市">玉溪市</div>
       <div class="filter-tab" data-region="其他">其他地区</div>
     </div>
     
     <!-- 经销商列表标题 -->
     <div class="section-header">
       <div class="section-title">经销商列表</div>
+      <a href="map.html" class="view-map-btn">
+        <i class="fas fa-map-marked-alt"></i> 查看地图
+      </a>
     </div>
     
     <!-- 加载动画 -->
@@ -86,7 +72,7 @@
   
   <!-- 底部导航栏 -->
   <div class="tab-bar">
-    <a href="#home" class="tab-item active">
+    <a href="index.html" class="tab-item active">
       <i class="fas fa-home tab-icon"></i>
       <span>首页</span>
     </a>
@@ -94,11 +80,11 @@
       <i class="fas fa-search tab-icon"></i>
       <span>搜索</span>
     </a>
-    <a href="#map" class="tab-item">
+    <a href="map.html" class="tab-item">
       <i class="fas fa-map-marked-alt tab-icon"></i>
       <span>地图</span>
     </a>
-    <a href="#about" class="tab-item">
+    <a href="about.html" class="tab-item">
       <i class="fas fa-info-circle tab-icon"></i>
       <span>关于</span>
     </a>
@@ -107,7 +93,7 @@
   <!-- 页脚信息 -->
   <footer class="text-center">
     <div class="container">
-      <p class="small text-muted">© 2023 云南省茅台经销商信息系统 | 本网站信息仅供参考</p>
+      <p class="small text-muted">© 2025 贵州茅台云南省经销商名录 | 本网站信息仅供参考</p>
     </div>
   </footer>
   

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>经销商地图 - 贵州茅台云南省经销商名录</title>
+  
+  <!-- Font Awesome 图标 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  
+  <!-- 自定义样式 -->
+  <link href="./css/style.css" rel="stylesheet">
+  <link href="./css/map.css" rel="stylesheet">
+  
+  <!-- 网站图标 -->
+  <link rel="icon" type="image/svg+xml" href="./images/logo.svg">
+  
+  <!-- 高德地图API -->
+  <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=您的高德地图API密钥"></script>
+</head>
+<body>
+  <!-- 页面头部 -->
+  <header>
+    <div class="container">
+      <div class="page-header">
+        <div class="logo-container">
+          <img src="./images/logo.svg" alt="茅台Logo" class="logo">
+          <div class="app-title">经销商地图</div>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <!-- 主要内容 -->
+  <main>
+    <!-- 地图容器 -->
+    <div id="mapContainer" class="map-container"></div>
+    
+    <!-- 返回按钮 -->
+    <a href="index.html" class="back-button">
+      <i class="fas fa-arrow-left"></i> 返回列表
+    </a>
+  </main>
+  
+  <!-- 底部导航栏 -->
+  <div class="tab-bar">
+    <a href="index.html" class="tab-item">
+      <i class="fas fa-home tab-icon"></i>
+      <span>首页</span>
+    </a>
+    <a href="#search" class="tab-item">
+      <i class="fas fa-search tab-icon"></i>
+      <span>搜索</span>
+    </a>
+    <a href="map.html" class="tab-item active">
+      <i class="fas fa-map-marked-alt tab-icon"></i>
+      <span>地图</span>
+    </a>
+    <a href="#about" class="tab-item">
+      <i class="fas fa-info-circle tab-icon"></i>
+      <span>关于</span>
+    </a>
+  </div>
+  
+  <!-- JavaScript 文件 -->
+  <script src="./js/map.js"></script>
+</body>
+</html> 
