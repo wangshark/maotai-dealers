@@ -282,59 +282,62 @@ function renderDealersList(dealers) {
 
 /**
  * 导航到经销商位置
- * @param {string} address - 地址
+ * @param {string} poiName - 地图上的POI名称
  */
-function navigateToDealer(address) {
-  // 显示导航选择对话框
-  if (!document.getElementById('navigationDialog')) {
-    // 创建导航选择对话框
-    const dialog = document.createElement('div');
-    dialog.id = 'navigationDialog';
-    dialog.className = 'navigation-dialog';
-    dialog.innerHTML = `
-      <div class="navigation-dialog-content">
-        <h3>选择导航应用</h3>
-        <div class="navigation-apps">
-          <button class="nav-app-btn" data-type="amap">
-            <i class="fas fa-map-marked-alt"></i>
-            <span>高德地图</span>
-          </button>
-          <button class="nav-app-btn" data-type="baidu">
-            <i class="fas fa-map-marked-alt"></i>
-            <span>百度地图</span>
-          </button>
-          <button class="nav-app-btn" data-type="apple">
-            <i class="fas fa-map-marked-alt"></i>
-            <span>苹果地图</span>
-          </button>
-          <button class="nav-app-btn" data-type="tencent">
-            <i class="fas fa-map-marked-alt"></i>
-            <span>腾讯地图</span>
-          </button>
-        </div>
-        <button class="nav-cancel-btn">取消</button>
+function navigateToDealer(poiName) {
+  // 如果已经存在导航对话框，先移除它
+  const existingDialog = document.getElementById('navigationDialog');
+  if (existingDialog) {
+    existingDialog.remove();
+  }
+  
+  // 创建新的导航选择对话框
+  const dialog = document.createElement('div');
+  dialog.id = 'navigationDialog';
+  dialog.className = 'navigation-dialog';
+  dialog.innerHTML = `
+    <div class="navigation-dialog-content">
+      <h3>选择导航应用</h3>
+      <div class="navigation-apps">
+        <button class="nav-app-btn" data-type="amap">
+          <i class="fas fa-map-marked-alt"></i>
+          <span>高德地图</span>
+        </button>
+        <button class="nav-app-btn" data-type="baidu">
+          <i class="fas fa-map-marked-alt"></i>
+          <span>百度地图</span>
+        </button>
+        <button class="nav-app-btn" data-type="apple">
+          <i class="fas fa-map-marked-alt"></i>
+          <span>苹果地图</span>
+        </button>
+        <button class="nav-app-btn" data-type="tencent">
+          <i class="fas fa-map-marked-alt"></i>
+          <span>腾讯地图</span>
+        </button>
       </div>
-    `;
-    document.body.appendChild(dialog);
-    
-    // 添加点击事件
-    dialog.querySelector('.nav-cancel-btn').addEventListener('click', () => {
+      <button class="nav-cancel-btn">取消</button>
+    </div>
+  `;
+  document.body.appendChild(dialog);
+  
+  // 添加点击事件
+  dialog.querySelector('.nav-cancel-btn').addEventListener('click', () => {
+    dialog.style.display = 'none';
+  });
+  
+  // 为每个导航应用按钮添加点击事件
+  const navAppButtons = dialog.querySelectorAll('.nav-app-btn');
+  navAppButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      const navType = e.currentTarget.getAttribute('data-type');
+      openNavigation(navType, poiName);
       dialog.style.display = 'none';
     });
-    
-    // 为每个导航应用按钮添加点击事件
-    const navAppButtons = dialog.querySelectorAll('.nav-app-btn');
-    navAppButtons.forEach(button => {
-      button.addEventListener('click', (e) => {
-        const navType = e.currentTarget.getAttribute('data-type');
-        openNavigation(navType, address);
-        dialog.style.display = 'none';
-      });
-    });
-  } else {
-    // 显示已存在的对话框
-    document.getElementById('navigationDialog').style.display = 'flex';
-  }
+  });
+  
+  // 显示对话框
+  dialog.style.display = 'flex';
 }
 
 /**
