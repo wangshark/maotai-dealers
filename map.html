@@ -22,6 +22,18 @@
     }
   </script>
   <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=e8489a4a5c62fb1229b3d243ef4c3ec3&plugin=AMap.Scale,AMap.ToolBar,AMap.Geolocation"></script>
+  <script type="text/javascript">
+    // 检查高德地图API是否加载成功
+    window.onload = function() {
+      console.log('页面加载完成...');
+      if (typeof AMap === 'undefined') {
+        console.error('高德地图API加载失败');
+        alert('地图加载失败，请刷新页面重试');
+      } else {
+        console.log('高德地图API加载成功');
+      }
+    };
+  </script>
 </head>
 <body>
   <!-- 页面头部 -->

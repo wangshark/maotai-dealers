@@ -1,12 +1,14 @@
 /* 地图页面样式 */
 .map-container {
   width: 100%;
-  height: calc(100vh - 200px);
-  min-height: 400px;
+  height: calc(100vh - 180px);
+  min-height: 500px;
   position: relative;
   z-index: 1;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   background-color: #f2f2f2;
+  display: block !important;
+  overflow: hidden;
 }
 
 main {
@@ -14,7 +16,9 @@ main {
   padding: 0;
   margin: 0;
   width: 100%;
-  height: calc(100vh - 140px);
+  height: auto;
+  min-height: calc(100vh - 140px);
+  overflow: visible;
 }
 
 .back-button {

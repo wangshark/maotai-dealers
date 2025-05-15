@@ -21,41 +21,83 @@ document.addEventListener('DOMContentLoaded', () => {
  * 初始化地图
  */
 function initMap() {
-  // 创建地图实例
-  map = new AMap.Map('mapContainer', {
-    resizeEnable: true,
-    zoom: 7,  // 云南省整体视图的缩放级别
-    center: [102.712251, 25.040609]  // 昆明市中心坐标
-  });
-  
-  // 添加地图控件 - 已在地图API加载时通过插件方式添加
-  map.addControl(new AMap.Scale());  // 比例尺
-  map.addControl(new AMap.ToolBar());  // 工具条
-  map.addControl(new AMap.Geolocation({
-    position: 'RB',  // 右下角
-    offset: [10, 60]  // 偏移量
-  }));  // 定位控件
+  console.log('开始初始化地图...');
+  try {
+    // 检查地图容器是否存在
+    const mapContainer = document.getElementById('mapContainer');
+    if (!mapContainer) {
+      console.error('地图容器不存在: #mapContainer');
+      return;
+    }
+    console.log('地图容器尺寸:', mapContainer.offsetWidth, 'x', mapContainer.offsetHeight);
+    
+    // 创建地图实例
+    map = new AMap.Map('mapContainer', {
+      resizeEnable: true,
+      zoom: 7,  // 云南省整体视图的缩放级别
+      center: [102.712251, 25.040609]  // 昆明市中心坐标
+    });
+    
+    console.log('地图实例创建成功');
+    
+    // 添加地图控件 - 已在地图API加载时通过插件方式添加
+    map.addControl(new AMap.Scale());  // 比例尺
+    console.log('添加比例尺成功');
+    
+    map.addControl(new AMap.ToolBar());  // 工具条
+    console.log('添加工具条成功');
+    
+    map.addControl(new AMap.Geolocation({
+      position: 'RB',  // 右下角
+      offset: [10, 60]  // 偏移量
+    }));  // 定位控件
+    console.log('添加定位控件成功');
+    
+    // 确保地图能被正确渲染
+    map.on('complete', function() {
+      console.log('地图渲染完成');
+    });
+  } catch (error) {
+    console.error('初始化地图时发生错误:', error);
+  }
 }
 
 /**
  * 加载经销商数据
  */
 function loadDealersData() {
+  console.log('开始加载经销商数据...');
   fetch('./data/dealers.json')
     .then(response => {
       if (!response.ok) {
         throw new Error('网络请求失败');
       }
+      console.log('成功获取经销商数据');
       return response.json();
     })
     .then(data => {
+      console.log(`成功解析经销商数据，共${data.length}条记录`);
       dealersData = data;
       
-      // 在地图上添加标记
-      addDealerMarkers();
-      
-      // 自动调整地图视野以包含所有标记
-      fitMapToMarkers();
+      // 确保地图已经初始化完成
+      if (map && map.getStatus) {
+        console.log('地图状态:', map.getStatus());
+        // 在地图上添加标记
+        addDealerMarkers();
+        
+        // 自动调整地图视野以包含所有标记
+        fitMapToMarkers();
+      } else {
+        console.error('地图未初始化完成，无法添加标记');
+        // 尝试延迟添加标记
+        setTimeout(() => {
+          if (map) {
+            console.log('延迟添加标记...');
+            addDealerMarkers();
+            fitMapToMarkers();
+          }
+        }, 1000);
+      }
     })
     .catch(error => {
       console.error('加载数据失败:', error);
@@ -67,8 +109,17 @@ function loadDealersData() {
  * 在地图上添加经销商标记
  */
 function addDealerMarkers() {
+  console.log('开始添加经销商标记...');
+  
+  // 确保地图对象可用
+  if (!map) {
+    console.error('地图对象不可用，无法添加标记');
+    return;
+  }
+  
   // 清除现有标记
   if (markers.length > 0) {
+    console.log(`清除${markers.length}个现有标记`);
     map.remove(markers);
     markers = [];
   }
@@ -81,9 +132,12 @@ function addDealerMarkers() {
       return;
     }
     
+    const position = [dealer.location.longitude, dealer.location.latitude];
+    console.log(`添加标记: ${dealer.name}, 位置: [${position}]`);
+    
     // 创建标记
     const marker = new AMap.Marker({
-      position: [dealer.location.longitude, dealer.location.latitude],
+      position: position,
       title: dealer.name,
       // 使用默认标记，添加自定义样式
       content: `<div class="custom-marker"><span>${index + 1}</span></div>`,
@@ -127,7 +181,12 @@ function addDealerMarkers() {
   });
   
   // 将所有标记添加到地图
-  map.add(markers);
+  if (markers.length > 0) {
+    console.log(`将${markers.length}个标记添加到地图`);
+    map.add(markers);
+  } else {
+    console.warn('没有可添加的标记');
+  }
   
   // 打印调试信息
   console.log(`成功添加了 ${markers.length} 个经销商标记`);
