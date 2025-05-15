@@ -1,0 +1,324 @@
+/* 经销商详情页样式 */
+
+/* 返回按钮 */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  transition: transform 0.2s ease;
+}
+
+.back-button:hover {
+  transform: translateX(-5px);
+}
+
+/* 经销商详情卡片 */
+.dealer-detail {
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--box-shadow);
+}
+
+.dealer-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.dealer-avatar {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--primary-color), #8b0000);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dealer-avatar i {
+  font-size: 28px;
+  color: var(--white);
+}
+
+.dealer-title {
+  flex: 1;
+}
+
+.dealer-name {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 6px;
+}
+
+.dealer-type {
+  font-size: 14px;
+  color: var(--text-light);
+  background-color: #f9f5e8;
+  padding: 4px 10px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.dealer-info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dealer-info-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--gray-medium);
+}
+
+.dealer-info-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.dealer-info-icon {
+  width: 36px;
+  height: 36px;
+  background-color: #f9f5e8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+  color: var(--secondary-color);
+  flex-shrink: 0;
+}
+
+.dealer-info-content {
+  flex: 1;
+}
+
+.dealer-info-label {
+  font-size: 14px;
+  color: var(--text-light);
+  margin-bottom: 4px;
+}
+
+.dealer-info-value {
+  font-size: 16px;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+/* 营业时间 */
+.business-hours {
+  display: flex;
+  flex-direction: column;
+}
+
+.business-day {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.business-day:last-child {
+  margin-bottom: 0;
+}
+
+.day-name {
+  font-weight: 500;
+}
+
+/* 操作按钮 */
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.action-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+}
+
+.action-button.navigate {
+  background: linear-gradient(135deg, var(--primary-color), #8b0000);
+  color: var(--white);
+  box-shadow: 0 4px 10px rgba(168, 28, 7, 0.3);
+}
+
+.action-button.call {
+  background: linear-gradient(135deg, var(--success-color), #1b5e20);
+  color: var(--white);
+  box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
+}
+
+/* 地图预览 */
+.map-preview-container {
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--secondary-color);
+}
+
+.map-preview {
+  height: 200px;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+}
+
+/* 服务项目 */
+.dealer-services {
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--box-shadow);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.service-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.service-icon {
+  font-size: 24px;
+  color: var(--secondary-color);
+  margin-bottom: 8px;
+}
+
+/* 推荐产品 */
+.recommended-products {
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--box-shadow);
+}
+
+.products-slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding-bottom: 16px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+.products-slider::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.product-card {
+  min-width: 140px;
+  background-color: var(--gray-light);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-image {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.product-name {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 10px 4px;
+  color: var(--text-color);
+}
+
+.product-price {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--primary-color);
+  padding: 0 10px 10px;
+}
+
+/* 响应式设计 */
+@media (max-width: 576px) {
+  .dealer-name {
+    font-size: 18px;
+  }
+  
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 收藏按钮 */
+.favorite-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  margin-top: 16px;
+  border-radius: var(--border-radius);
+  background-color: var(--white);
+  border: 2px solid var(--gray-medium);
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.favorite-button:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.favorite-button.active {
+  background-color: #fff5f5;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.favorite-button i {
+  font-size: 18px;
+} 

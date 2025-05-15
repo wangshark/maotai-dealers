@@ -7,6 +7,8 @@
 let dealersData = [];
 let currentFilter = 'all';
 let searchTimeout;
+let favorites = [];
+let history = [];
 
 // 页面加载完成后执行
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,7 +23,59 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // 初始化筛选标签功能
   initFilterTabs();
+  
+  // 加载收藏数据
+  loadFavorites();
+  
+  // 加载浏览历史
+  loadHistory();
 });
+
+/**
+ * 加载收藏数据
+ */
+function loadFavorites() {
+  const savedFavorites = localStorage.getItem('maotai_favorites');
+  if (savedFavorites) {
+    favorites = JSON.parse(savedFavorites);
+  }
+}
+
+/**
+ * 保存收藏数据
+ */
+function saveFavorites() {
+  localStorage.setItem('maotai_favorites', JSON.stringify(favorites));
+}
+
+/**
+ * 切换收藏状态
+ * @param {number} index - 经销商索引
+ * @param {Event} event - 事件对象
+ */
+function toggleFavorite(index, event) {
+  // 阻止事件冒泡，避免触发列表项点击事件
+  event.stopPropagation();
+  
+  const favoriteIndex = favorites.indexOf(index);
+  
+  if (favoriteIndex === -1) {
+    // 添加到收藏
+    favorites.push(index);
+    event.target.classList.remove('far');
+    event.target.classList.add('fas');
+    event.target.style.color = '#a81c07';
+  } else {
+    // 从收藏中移除
+    favorites.splice(favoriteIndex, 1);
+    event.target.classList.remove('fas');
+    event.target.classList.add('far');
+    event.target.style.color = '#666666';
+  }
+  
+  // 保存收藏数据
+  saveFavorites();
+}
 
 /**
  * 初始化搜索功能
@@ -115,6 +169,46 @@ function filterAndRenderDealers() {
     return;
   }
   
+  // 处理"我的收藏"筛选
+  if (currentFilter === 'favorites') {
+    if (favorites.length === 0) {
+      // 如果没有收藏的经销商，显示提示信息
+      const dealersListElement = document.getElementById('dealersList');
+      dealersListElement.innerHTML = '<p class="no-data">您还没有收藏任何经销商</p>';
+      return;
+    }
+    
+    // 根据收藏的索引筛选经销商
+    const favoriteDealers = dealersData.filter((dealer, index) => {
+      return favorites.includes(index);
+    });
+    
+    renderDealersList(favoriteDealers);
+    return;
+  }
+  
+  // 处理"浏览历史"筛选
+  if (currentFilter === 'history') {
+    if (history.length === 0) {
+      // 如果没有浏览历史，显示提示信息
+      const dealersListElement = document.getElementById('dealersList');
+      dealersListElement.innerHTML = '<p class="no-data">您还没有浏览任何经销商</p>';
+      return;
+    }
+    
+    // 根据历史记录的索引筛选经销商
+    const historyDealers = [];
+    history.forEach(index => {
+      if (dealersData[index]) {
+        historyDealers.push(dealersData[index]);
+      }
+    });
+    
+    renderDealersList(historyDealers);
+    return;
+  }
+  
+  // 按地区筛选
   const filteredDealers = dealersData.filter(dealer => {
     return dealer.address.includes(currentFilter);
   });
@@ -147,10 +241,18 @@ function renderDealersList(dealers) {
     const displayIndex = index + 1;
     const formattedIndex = displayIndex < 10 ? `0${displayIndex}` : displayIndex;
     
+    // 检查是否已收藏
+    const isFavorite = favorites.includes(index);
+    const favoriteIconClass = isFavorite ? 'fas' : 'far';
+    const favoriteIconColor = isFavorite ? '#a81c07' : '#666666';
+    
     dealerItem.innerHTML = `
       <div class="dealer-index">${formattedIndex}</div>
       <div class="dealer-content">
-        <div class="dealer-name">${dealer.name}</div>
+        <div class="dealer-name">
+          ${dealer.name}
+          <i class="${favoriteIconClass} fa-heart favorite-icon" style="color: ${favoriteIconColor}" onclick="toggleFavorite(${index}, event)"></i>
+        </div>
         <div class="dealer-address">${dealer.address}</div>
         <div class="dealer-phone">${dealer.phone}</div>
       </div>
@@ -163,6 +265,16 @@ function renderDealersList(dealers) {
         </a>
       </div>
     `;
+    
+    // 添加点击事件，跳转到详情页
+    dealerItem.addEventListener('click', (e) => {
+      // 如果点击的是导航或拨打电话按钮，则不跳转到详情页
+      if (e.target.closest('.action-icon') || e.target.closest('.favorite-icon')) {
+        return;
+      }
+      // 跳转到详情页，并传递经销商ID
+      window.location.href = `detail.html?id=${index}`;
+    });
     
     dealersListElement.appendChild(dealerItem);
   });
@@ -240,5 +352,15 @@ function searchDealers() {
     resultInfo.className = 'search-result-info';
     resultInfo.textContent = `找到 ${resultCount} 家符合"${keyword}"的经销商`;
     dealersListElement.insertBefore(resultInfo, dealersListElement.firstChild);
+  }
+}
+
+/**
+ * 加载浏览历史
+ */
+function loadHistory() {
+  const savedHistory = localStorage.getItem('maotai_history');
+  if (savedHistory) {
+    history = JSON.parse(savedHistory);
   }
 } 

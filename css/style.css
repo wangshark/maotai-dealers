@@ -1,19 +1,21 @@
 /* 全局样式 */
 :root {
-  --primary-color: #b12704;
-  --secondary-color: #ffd700;
+  --primary-color: #a81c07; /* 更深沉的茅台红 */
+  --secondary-color: #d4af37; /* 更高级的金色 */
   --text-color: #333333;
-  --gray-light: #f8f9fa;
-  --gray-medium: #e9ecef;
-  --gray-dark: #6c757d;
+  --text-light: #666666;
+  --gray-light: #f9f9f9;
+  --gray-medium: #eaeaea;
+  --gray-dark: #666666;
   --success-color: #2e7d32;
   --white: #ffffff;
-  --border-radius: 12px;
-  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+  --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  --font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-family);
   line-height: 1.6;
   color: var(--text-color);
   background-color: var(--gray-light);
@@ -30,8 +32,8 @@ body {
 
 /* 头部样式 */
 header {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background: linear-gradient(135deg, var(--primary-color), #8b0000);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
   padding: 15px 0;
   margin-bottom: 20px;
 }
@@ -50,71 +52,91 @@ header {
 .logo {
   max-height: 50px;
   margin-right: 15px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .app-title {
   font-size: 22px;
   font-weight: 600;
-  color: var(--primary-color);
+  color: var(--white);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* 搜索栏样式 */
 .search-container {
   position: relative;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .search-input {
   width: 100%;
-  padding: 12px 16px 12px 40px;
-  border-radius: 20px;
-  border: none;
-  background-color: var(--gray-medium);
+  padding: 14px 16px 14px 45px;
+  border-radius: 25px;
+  border: 1px solid var(--gray-medium);
+  background-color: var(--white);
   font-size: 16px;
   color: var(--text-color);
   outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
 }
 
 .search-icon {
   position: absolute;
-  left: 15px;
+  left: 18px;
   top: 50%;
   transform: translateY(-50%);
   color: var(--gray-dark);
+  font-size: 18px;
 }
 
 /* 顶部横幅 */
 .header-banner {
   width: 100%;
-  height: 150px;
+  height: 180px;
   object-fit: cover;
   border-radius: var(--border-radius);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* 筛选标签 */
 .filter-tabs {
   display: flex;
   overflow-x: auto;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   padding-bottom: 8px;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+.filter-tabs::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
 }
 
 .filter-tab {
-  padding: 8px 16px;
-  background-color: var(--gray-medium);
-  border-radius: 16px;
-  margin-right: 8px;
+  padding: 10px 18px;
+  background-color: var(--white);
+  border: 1px solid var(--gray-medium);
+  border-radius: 20px;
+  margin-right: 10px;
   white-space: nowrap;
   font-size: 14px;
-  color: var(--gray-dark);
+  color: var(--text-color);
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .filter-tab.active {
   background-color: var(--primary-color);
+  border-color: var(--primary-color);
   color: white;
+  box-shadow: 0 2px 6px rgba(168, 28, 7, 0.3);
 }
 
 /* 经销商列表标题 */
@@ -122,13 +144,16 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 10px;
 }
 
 .section-title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
-  color: var(--text-color);
+  color: var(--primary-color);
+  position: relative;
 }
 
 /* 经销商列表样式 */
@@ -140,11 +165,18 @@ header {
 
 .dealer-list-item {
   display: flex;
-  padding: 12px 16px;
+  padding: 16px;
   background-color: white;
   border-radius: var(--border-radius);
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   box-shadow: var(--box-shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-left: 3px solid var(--primary-color);
+}
+
+.dealer-list-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .dealer-list-item:active {
@@ -152,18 +184,19 @@ header {
 }
 
 .dealer-index {
-  width: 24px;
-  height: 24px;
-  background-color: var(--primary-color);
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, var(--primary-color), #8b0000);
   color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
-  margin-right: 12px;
+  margin-right: 16px;
   flex-shrink: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .dealer-content {
@@ -171,16 +204,18 @@ header {
 }
 
 .dealer-name {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
   color: var(--primary-color);
   margin-bottom: 8px;
+  display: flex;
+  align-items: center;
 }
 
 .dealer-address {
-  font-size: 13px;
-  color: var(--gray-dark);
-  margin-bottom: 4px;
+  font-size: 14px;
+  color: var(--text-light);
+  margin-bottom: 6px;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -188,8 +223,8 @@ header {
 }
 
 .dealer-phone {
-  font-size: 13px;
-  color: var(--gray-dark);
+  font-size: 14px;
+  color: var(--text-light);
 }
 
 .dealer-actions {
@@ -199,22 +234,28 @@ header {
 }
 
 .action-icon {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.action-icon:hover {
+  transform: scale(1.05);
 }
 
 .action-icon.navigate {
-  background-color: var(--primary-color);
+  background: linear-gradient(135deg, var(--primary-color), #8b0000);
 }
 
 .action-icon.call {
-  background-color: var(--success-color);
+  background: linear-gradient(135deg, var(--success-color), #1b5e20);
 }
 
 /* 底部导航栏 */
@@ -228,7 +269,7 @@ header {
   left: 0;
   right: 0;
   height: 60px;
-  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
 
@@ -238,10 +279,11 @@ header {
   align-items: center;
   color: var(--gray-dark);
   text-decoration: none;
-  font-size: 10px;
+  font-size: 12px;
   padding: 8px 0;
   width: 25%;
   text-align: center;
+  transition: color 0.3s ease;
 }
 
 .tab-item.active {
@@ -256,8 +298,9 @@ header {
 /* 页脚样式 */
 footer {
   text-align: center;
-  padding: 20px 0;
-  margin-bottom: 60px; /* 为底部导航栏留出空间 */
+  padding: 25px 0;
+  margin-bottom: 70px; /* 为底部导航栏留出空间 */
+  border-top: 1px solid var(--gray-medium);
 }
 
 .small {
@@ -271,7 +314,7 @@ footer {
 /* 加载动画 */
 .loader {
   text-align: center;
-  padding: 20px;
+  padding: 30px;
   display: none;
 }
 
@@ -285,40 +328,21 @@ footer {
   to { transform: rotate(360deg); }
 }
 
-/* 响应式设计 */
-@media (max-width: 576px) {
-  .app-title {
-    font-size: 18px;
-  }
-  
-  .dealer-name {
-    font-size: 14px;
-  }
-  
-  .dealer-address, .dealer-phone {
-    font-size: 12px;
-  }
-  
-  .action-icon {
-    width: 32px;
-    height: 32px;
-  }
-}
-
 /* 搜索结果信息 */
 .search-result-info {
-  background-color: var(--gray-light);
-  border-left: 3px solid var(--primary-color);
-  padding: 10px 15px;
-  margin-bottom: 12px;
-  font-size: 14px;
+  background-color: #f9f5e8;
+  border-left: 3px solid var(--secondary-color);
+  padding: 12px 18px;
+  margin-bottom: 16px;
+  font-size: 15px;
   color: var(--text-color);
-  border-radius: 4px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .no-data {
   text-align: center;
-  padding: 30px 0;
+  padding: 40px 0;
   color: var(--gray-dark);
   font-style: italic;
 }
@@ -327,25 +351,62 @@ footer {
 .error-message {
   background-color: #fff3f3;
   border-left: 3px solid #ff0000;
-  padding: 15px;
+  padding: 16px;
   margin: 20px 0;
   color: #d32f2f;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 /* 查看地图按钮 */
 .view-map-btn {
   display: flex;
   align-items: center;
-  gap: 5px;
-  background-color: var(--primary-color);
+  gap: 6px;
+  background: linear-gradient(135deg, var(--secondary-color), #b8860b);
   color: white;
-  padding: 6px 12px;
-  border-radius: 16px;
+  padding: 8px 16px;
+  border-radius: 20px;
   font-size: 14px;
+  font-weight: 500;
   text-decoration: none;
+  box-shadow: 0 2px 6px rgba(184, 134, 11, 0.3);
+  transition: all 0.3s ease;
 }
 
 .view-map-btn:hover {
-  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(184, 134, 11, 0.4);
+}
+
+/* 响应式设计 */
+@media (max-width: 576px) {
+  .app-title {
+    font-size: 18px;
+  }
+  
+  .dealer-name {
+    font-size: 15px;
+  }
+  
+  .dealer-address, .dealer-phone {
+    font-size: 13px;
+  }
+  
+  .action-icon {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* 收藏图标 */
+.favorite-icon {
+  margin-left: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.favorite-icon:hover {
+  transform: scale(1.2);
 } 
