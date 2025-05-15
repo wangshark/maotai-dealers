@@ -65,7 +65,7 @@ header {
 /* 搜索栏样式 */
 .search-container {
   position: relative;
-  margin-bottom: 20px;
+  margin: 15px 0;
 }
 
 .search-input {
@@ -101,7 +101,7 @@ header {
   height: 180px;
   object-fit: cover;
   border-radius: var(--border-radius);
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -164,8 +164,9 @@ header {
 }
 
 .dealer-list-item {
+  position: relative;
   display: flex;
-  padding: 16px;
+  padding: 16px 16px 16px 50px;
   background-color: white;
   border-radius: var(--border-radius);
   margin-bottom: 12px;
@@ -184,6 +185,10 @@ header {
 }
 
 .dealer-index {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 28px;
   height: 28px;
   background: linear-gradient(135deg, var(--primary-color), #8b0000);
@@ -194,13 +199,13 @@ header {
   justify-content: center;
   font-size: 14px;
   font-weight: bold;
-  margin-right: 16px;
   flex-shrink: 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .dealer-content {
   flex: 1;
+  padding-right: 10px;
 }
 
 .dealer-name {
@@ -208,8 +213,22 @@ header {
   font-weight: 600;
   color: var(--primary-color);
   margin-bottom: 8px;
-  display: flex;
-  align-items: center;
+  padding-right: 30px;
+  position: relative;
+}
+
+.favorite-icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.favorite-icon:hover {
+  transform: translateY(-50%) scale(1.2);
 }
 
 .dealer-address {
@@ -229,8 +248,10 @@ header {
 
 .dealer-actions {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  gap: 10px;
 }
 
 .action-icon {
@@ -387,6 +408,7 @@ footer {
   
   .dealer-name {
     font-size: 15px;
+    padding-right: 25px;
   }
   
   .dealer-address, .dealer-phone {
@@ -397,18 +419,39 @@ footer {
     width: 36px;
     height: 36px;
   }
-}
-
-/* 收藏图标 */
-.favorite-icon {
-  margin-left: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.favorite-icon:hover {
-  transform: scale(1.2);
+  
+  .header-banner {
+    height: 150px;
+  }
+  
+  .dealer-list-item {
+    padding: 14px 14px 14px 45px;
+  }
+  
+  .dealer-index {
+    width: 24px;
+    height: 24px;
+    left: 10px;
+    font-size: 12px;
+  }
+  
+  .filter-tabs {
+    margin-top: 15px;
+  }
+  
+  .filter-tab {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+  
+  .section-header {
+    margin-top: 15px;
+  }
+  
+  .view-map-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
 }
 
 /* 导航选择对话框样式 */
