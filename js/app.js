@@ -349,26 +349,29 @@ function navigateToDealer(lat, lng, address) {
 function openNavigation(type, lat, lng, address) {
   let url = '';
   
+  // 对地址进行编码，确保URL安全
+  const encodedAddress = encodeURIComponent(address);
+  
   switch(type) {
     case 'amap':
-      // 高德地图
-      url = `https://uri.amap.com/marker?position=${lng},${lat}&name=${address}&callnative=1`;
+      // 高德地图 - 优先使用地址
+      url = `https://uri.amap.com/navigation?to=${lng},${lat},${encodedAddress}&mode=car&callnative=1`;
       break;
     case 'baidu':
-      // 百度地图
-      url = `https://api.map.baidu.com/marker?location=${lat},${lng}&title=${address}&content=${address}&output=html&src=webapp.baidu.openAPIdemo`;
+      // 百度地图 - 优先使用地址
+      url = `https://api.map.baidu.com/direction?destination=name:${encodedAddress}|latlng:${lat},${lng}&mode=driving&coord_type=bd09ll&output=html&src=webapp.baidu.openAPIdemo`;
       break;
     case 'apple':
-      // 苹果地图
-      url = `https://maps.apple.com/?q=${address}&ll=${lat},${lng}&z=16`;
+      // 苹果地图 - 优先使用地址
+      url = `https://maps.apple.com/?daddr=${encodedAddress}&ll=${lat},${lng}&z=16`;
       break;
     case 'tencent':
-      // 腾讯地图
-      url = `https://apis.map.qq.com/uri/v1/marker?marker=coord:${lat},${lng};title:${address};addr:${address}&referer=myapp`;
+      // 腾讯地图 - 优先使用地址
+      url = `https://apis.map.qq.com/uri/v1/routeplan?type=drive&to=${encodedAddress}&tocoord=${lat},${lng}&referer=myapp`;
       break;
     default:
       // 默认使用高德地图
-      url = `https://uri.amap.com/marker?position=${lng},${lat}&name=${address}&callnative=1`;
+      url = `https://uri.amap.com/navigation?to=${lng},${lat},${encodedAddress}&mode=car&callnative=1`;
   }
   
   window.location.href = url;
