@@ -288,21 +288,17 @@ function renderDealersList(dealers) {
 function showMapWithNavigateButton(poiName, index) {
   // 获取经销商数据
   const dealer = dealersData[index];
-  if (!dealer || !dealer.location) {
-    console.error('无法获取经销商坐标信息');
+  if (!dealer) {
+    console.error('无法获取经销商信息');
     return;
   }
   
-  // 准备经纬度坐标
-  const longitude = dealer.location.longitude;
-  const latitude = dealer.location.latitude;
-  const position = `${longitude},${latitude}`;
+  // 优先使用地址进行搜索导航（更可靠，高德会自动识别）
+  const address = dealer.address;
+  const encodedAddress = encodeURIComponent(address);
   
-  // 使用高德地图 URI API，直接显示位置并提供导航按钮
-  const encodedPoiName = encodeURIComponent(poiName);
-  
-  // 使用marker接口，需要提供精确的position坐标
-  const url = `https://uri.amap.com/marker?position=${position}&name=${encodedPoiName}&callnative=1&sourceApplication=茅台经销商导航`;
+  // 使用search接口，高德地图会自动搜索定位
+  const url = `https://uri.amap.com/search?keyword=${encodedAddress}&callnative=1&sourceApplication=茅台经销商导航`;
   
   // 在新窗口中打开高德地图
   window.open(url, '_blank');
