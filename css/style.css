@@ -409,4 +409,85 @@ footer {
 
 .favorite-icon:hover {
   transform: scale(1.2);
+}
+
+/* 导航选择对话框样式 */
+.navigation-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navigation-dialog-content {
+  background-color: white;
+  border-radius: 12px;
+  width: 300px;
+  max-width: 90%;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.navigation-dialog h3 {
+  text-align: center;
+  margin: 0 0 20px;
+  color: var(--primary-color);
+  font-size: 18px;
+}
+
+.navigation-apps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.nav-app-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background-color: #f8f8f8;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  padding: 15px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-app-btn:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+}
+
+.nav-app-btn i {
+  font-size: 24px;
+  color: var(--primary-color);
+}
+
+.nav-app-btn span {
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+.nav-cancel-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 8px;
+  color: var(--text-color);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.nav-cancel-btn:hover {
+  background-color: #e6e6e6;
 } 

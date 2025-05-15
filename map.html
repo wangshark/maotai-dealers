@@ -15,7 +15,12 @@
   <!-- 网站图标 -->
   <link rel="icon" type="image/png" href="./images/logo.png">
   
-  <!-- 高德地图API - 使用免费的Web服务API -->
+  <!-- 高德地图API - 使用HTTPS加载 -->
+  <script type="text/javascript">
+    window._AMapSecurityConfig = {
+      securityJsCode: '68a797f7acd53dac3a74ca324a4c1dd1', // 安全密钥
+    }
+  </script>
   <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=e8489a4a5c62fb1229b3d243ef4c3ec3"></script>
 </head>
 <body>
@@ -47,10 +52,6 @@
     <a href="index.html" class="tab-item">
       <i class="fas fa-home tab-icon"></i>
       <span>首页</span>
-    </a>
-    <a href="#search" class="tab-item">
-      <i class="fas fa-search tab-icon"></i>
-      <span>搜索</span>
     </a>
     <a href="map.html" class="tab-item active">
       <i class="fas fa-map-marked-alt tab-icon"></i>

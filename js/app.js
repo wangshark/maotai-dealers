@@ -287,23 +287,91 @@ function renderDealersList(dealers) {
  * @param {string} address - 地址
  */
 function navigateToDealer(lat, lng, address) {
-  // 检测设备类型
-  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  // 显示导航选择对话框
+  if (!document.getElementById('navigationDialog')) {
+    // 创建导航选择对话框
+    const dialog = document.createElement('div');
+    dialog.id = 'navigationDialog';
+    dialog.className = 'navigation-dialog';
+    dialog.innerHTML = `
+      <div class="navigation-dialog-content">
+        <h3>选择导航应用</h3>
+        <div class="navigation-apps">
+          <button class="nav-app-btn" data-type="amap">
+            <i class="fas fa-map-marked-alt"></i>
+            <span>高德地图</span>
+          </button>
+          <button class="nav-app-btn" data-type="baidu">
+            <i class="fas fa-map-marked-alt"></i>
+            <span>百度地图</span>
+          </button>
+          <button class="nav-app-btn" data-type="apple">
+            <i class="fas fa-map-marked-alt"></i>
+            <span>苹果地图</span>
+          </button>
+          <button class="nav-app-btn" data-type="tencent">
+            <i class="fas fa-map-marked-alt"></i>
+            <span>腾讯地图</span>
+          </button>
+        </div>
+        <button class="nav-cancel-btn">取消</button>
+      </div>
+    `;
+    document.body.appendChild(dialog);
+    
+    // 添加点击事件
+    dialog.querySelector('.nav-cancel-btn').addEventListener('click', () => {
+      dialog.style.display = 'none';
+    });
+    
+    // 为每个导航应用按钮添加点击事件
+    const navAppButtons = dialog.querySelectorAll('.nav-app-btn');
+    navAppButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        const navType = e.currentTarget.getAttribute('data-type');
+        openNavigation(navType, lat, lng, address);
+        dialog.style.display = 'none';
+      });
+    });
+  } else {
+    // 显示已存在的对话框
+    document.getElementById('navigationDialog').style.display = 'flex';
+  }
+}
+
+/**
+ * 打开导航应用
+ * @param {string} type - 导航应用类型
+ * @param {number} lat - 纬度
+ * @param {number} lng - 经度
+ * @param {string} address - 地址
+ */
+function openNavigation(type, lat, lng, address) {
+  let url = '';
   
-  // iOS设备
-  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-    window.location.href = `https://maps.apple.com/?q=${address}&ll=${lat},${lng}&z=16`;
-    return;
+  switch(type) {
+    case 'amap':
+      // 高德地图
+      url = `https://uri.amap.com/marker?position=${lng},${lat}&name=${address}&callnative=1`;
+      break;
+    case 'baidu':
+      // 百度地图
+      url = `https://api.map.baidu.com/marker?location=${lat},${lng}&title=${address}&content=${address}&output=html&src=webapp.baidu.openAPIdemo`;
+      break;
+    case 'apple':
+      // 苹果地图
+      url = `https://maps.apple.com/?q=${address}&ll=${lat},${lng}&z=16`;
+      break;
+    case 'tencent':
+      // 腾讯地图
+      url = `https://apis.map.qq.com/uri/v1/marker?marker=coord:${lat},${lng};title:${address};addr:${address}&referer=myapp`;
+      break;
+    default:
+      // 默认使用高德地图
+      url = `https://uri.amap.com/marker?position=${lng},${lat}&name=${address}&callnative=1`;
   }
   
-  // Android设备
-  if (/android/i.test(userAgent)) {
-    window.location.href = `geo:${lat},${lng}?q=${address}`;
-    return;
-  }
-  
-  // 默认使用高德地图（网页版）
-  window.location.href = `https://uri.amap.com/marker?position=${lng},${lat}&name=${address}&callnative=0`;
+  window.location.href = url;
 }
 
 /**
