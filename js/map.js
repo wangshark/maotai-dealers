@@ -28,7 +28,7 @@ function initMap() {
     center: [102.712251, 25.040609]  // 昆明市中心坐标
   });
   
-  // 添加地图控件
+  // 添加地图控件 - 已在地图API加载时通过插件方式添加
   map.addControl(new AMap.Scale());  // 比例尺
   map.addControl(new AMap.ToolBar());  // 工具条
   map.addControl(new AMap.Geolocation({
@@ -75,6 +75,12 @@ function addDealerMarkers() {
   
   // 添加新标记
   dealersData.forEach((dealer, index) => {
+    // 确保坐标有效
+    if (!dealer.location || !dealer.location.latitude || !dealer.location.longitude) {
+      console.error('经销商坐标信息缺失:', dealer.name);
+      return;
+    }
+    
     // 创建标记
     const marker = new AMap.Marker({
       position: [dealer.location.longitude, dealer.location.latitude],
@@ -122,6 +128,9 @@ function addDealerMarkers() {
   
   // 将所有标记添加到地图
   map.add(markers);
+  
+  // 打印调试信息
+  console.log(`成功添加了 ${markers.length} 个经销商标记`);
 }
 
 /**
@@ -134,6 +143,7 @@ function fitMapToMarkers() {
     
     // 自动调整地图视野
     map.setFitView(markers);
+    console.log('地图视野已调整，包含所有标记');
   }
 }
 
@@ -144,6 +154,8 @@ function fitMapToMarkers() {
  * @param {string} address - 地址
  */
 function navigateToDealer(lat, lng, address) {
+  console.log(`准备导航到: [${lng}, ${lat}], 地址: ${address}`);
+  
   // 显示导航选择对话框
   if (!document.getElementById('navigationDialog')) {
     // 创建导航选择对话框
@@ -154,19 +166,19 @@ function navigateToDealer(lat, lng, address) {
       <div class="navigation-dialog-content">
         <h3>选择导航应用</h3>
         <div class="navigation-apps">
-          <button class="nav-app-btn" data-type="amap">
+          <button class="nav-app-btn" data-type="amap" data-lat="${lat}" data-lng="${lng}" data-address="${address}">
             <i class="fas fa-map-marked-alt"></i>
             <span>高德地图</span>
           </button>
-          <button class="nav-app-btn" data-type="baidu">
+          <button class="nav-app-btn" data-type="baidu" data-lat="${lat}" data-lng="${lng}" data-address="${address}">
             <i class="fas fa-map-marked-alt"></i>
             <span>百度地图</span>
           </button>
-          <button class="nav-app-btn" data-type="apple">
+          <button class="nav-app-btn" data-type="apple" data-lat="${lat}" data-lng="${lng}" data-address="${address}">
             <i class="fas fa-map-marked-alt"></i>
             <span>苹果地图</span>
           </button>
-          <button class="nav-app-btn" data-type="tencent">
+          <button class="nav-app-btn" data-type="tencent" data-lat="${lat}" data-lng="${lng}" data-address="${address}">
             <i class="fas fa-map-marked-alt"></i>
             <span>腾讯地图</span>
           </button>
@@ -186,13 +198,26 @@ function navigateToDealer(lat, lng, address) {
     navAppButtons.forEach(button => {
       button.addEventListener('click', (e) => {
         const navType = e.currentTarget.getAttribute('data-type');
+        const lat = e.currentTarget.getAttribute('data-lat');
+        const lng = e.currentTarget.getAttribute('data-lng');
+        const address = e.currentTarget.getAttribute('data-address');
+        
         openNavigation(navType, lat, lng, address);
         dialog.style.display = 'none';
       });
     });
   } else {
+    // 更新已存在对话框中的数据
+    const dialog = document.getElementById('navigationDialog');
+    const navButtons = dialog.querySelectorAll('.nav-app-btn');
+    navButtons.forEach(button => {
+      button.setAttribute('data-lat', lat);
+      button.setAttribute('data-lng', lng);
+      button.setAttribute('data-address', address);
+    });
+    
     // 显示已存在的对话框
-    document.getElementById('navigationDialog').style.display = 'flex';
+    dialog.style.display = 'flex';
   }
 }
 
@@ -206,27 +231,31 @@ function navigateToDealer(lat, lng, address) {
 function openNavigation(type, lat, lng, address) {
   let url = '';
   
+  // 添加调试日志
+  console.log(`打开导航: 类型=${type}, 坐标=[${lng}, ${lat}], 地址=${address}`);
+  
   switch(type) {
     case 'amap':
       // 高德地图
-      url = `https://uri.amap.com/marker?position=${lng},${lat}&name=${address}&callnative=1`;
+      url = `https://uri.amap.com/marker?position=${lng},${lat}&name=${encodeURIComponent(address)}&callnative=1`;
       break;
     case 'baidu':
       // 百度地图
-      url = `https://api.map.baidu.com/marker?location=${lat},${lng}&title=${address}&content=${address}&output=html&src=webapp.baidu.openAPIdemo`;
+      url = `https://api.map.baidu.com/marker?location=${lat},${lng}&title=${encodeURIComponent(address)}&content=${encodeURIComponent(address)}&output=html&src=webapp.baidu.openAPIdemo`;
       break;
     case 'apple':
       // 苹果地图
-      url = `https://maps.apple.com/?q=${address}&ll=${lat},${lng}&z=16`;
+      url = `https://maps.apple.com/?q=${encodeURIComponent(address)}&ll=${lat},${lng}&z=16`;
       break;
     case 'tencent':
       // 腾讯地图
-      url = `https://apis.map.qq.com/uri/v1/marker?marker=coord:${lat},${lng};title:${address};addr:${address}&referer=myapp`;
+      url = `https://apis.map.qq.com/uri/v1/marker?marker=coord:${lat},${lng};title:${encodeURIComponent(address)};addr:${encodeURIComponent(address)}&referer=myapp`;
       break;
     default:
       // 默认使用高德地图
-      url = `https://uri.amap.com/marker?position=${lng},${lat}&name=${address}&callnative=1`;
+      url = `https://uri.amap.com/marker?position=${lng},${lat}&name=${encodeURIComponent(address)}&callnative=1`;
   }
   
+  console.log(`导航URL: ${url}`);
   window.location.href = url;
 } 
