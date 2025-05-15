@@ -257,7 +257,7 @@ function renderDealersList(dealers) {
         <div class="dealer-phone">${dealer.phone}</div>
       </div>
       <div class="dealer-actions">
-        <a href="javascript:void(0);" class="action-icon navigate" onclick="showMapWithNavigateButton('${dealer.mapName || dealer.name}')">
+        <a href="javascript:void(0);" class="action-icon navigate" onclick="showMapWithNavigateButton('${dealer.mapName || dealer.address}')">
           <i class="fas fa-map-marker-alt"></i>
         </a>
         <a href="tel:${dealer.phone}" class="action-icon call">
@@ -285,48 +285,17 @@ function renderDealersList(dealers) {
  * @param {string} poiName - 地图上的POI名称
  */
 function showMapWithNavigateButton(poiName) {
-  // 直接打开高德地图显示位置
+  // 使用高德地图 URI API，直接显示位置并提供导航按钮
   const encodedPoiName = encodeURIComponent(poiName);
-  const url = `https://uri.amap.com/search?keyword=${encodedPoiName}&callnative=1`;
   
-  // 在新窗口中打开地图
+  // 使用p=起点,终点格式，不指定起点则使用当前位置作为起点
+  // 设置callnative=1确保在移动设备上直接打开高德地图应用
+  // 设置type=present_mapview来显示地图视图，而不是直接开始导航
+  // 由于type=present_mapview参数，界面会显示"开始导航"按钮
+  const url = `https://uri.amap.com/marker?position=&name=${encodedPoiName}&callnative=1&sourceApplication=茅台经销商导航`;
+  
+  // 在新窗口中打开高德地图
   window.open(url, '_blank');
-  
-  // 显示立即导航对话框
-  setTimeout(() => {
-    // 如果已经存在导航对话框，先移除它
-    const existingDialog = document.getElementById('navigationDialog');
-    if (existingDialog) {
-      existingDialog.remove();
-    }
-    
-    // 创建新的导航选择对话框
-    const dialog = document.createElement('div');
-    dialog.id = 'navigationDialog';
-    dialog.className = 'navigation-dialog';
-    dialog.innerHTML = `
-      <div class="navigation-dialog-content">
-        <h3>选择导航方式</h3>
-        <button class="navigate-now-btn" id="navigateNowBtn">立即导航</button>
-        <button class="nav-cancel-btn">取消</button>
-      </div>
-    `;
-    document.body.appendChild(dialog);
-    
-    // 添加点击事件
-    dialog.querySelector('.nav-cancel-btn').addEventListener('click', () => {
-      dialog.style.display = 'none';
-    });
-    
-    // 为立即导航按钮添加点击事件
-    dialog.querySelector('#navigateNowBtn').addEventListener('click', () => {
-      showNavigationOptions(poiName);
-      dialog.style.display = 'none';
-    });
-    
-    // 显示对话框
-    dialog.style.display = 'flex';
-  }, 1000); // 延迟1秒显示导航对话框，给地图加载时间
 }
 
 /**

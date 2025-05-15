@@ -154,65 +154,12 @@ function fitMapToMarkers() {
 function navigateToDealer(address) {
   console.log(`准备导航到: 地址: ${address}`);
   
-  // 显示导航选择对话框
-  if (!document.getElementById('navigationDialog')) {
-    // 创建导航选择对话框
-    const dialog = document.createElement('div');
-    dialog.id = 'navigationDialog';
-    dialog.className = 'navigation-dialog';
-    dialog.innerHTML = `
-      <div class="navigation-dialog-content">
-        <h3>选择导航应用</h3>
-        <div class="navigation-apps">
-          <button class="nav-app-btn" data-type="amap" data-address="${address}">
-            <i class="fas fa-map-marked-alt"></i>
-            <span>高德地图</span>
-          </button>
-          <button class="nav-app-btn" data-type="baidu" data-address="${address}">
-            <i class="fas fa-map-marked-alt"></i>
-            <span>百度地图</span>
-          </button>
-          <button class="nav-app-btn" data-type="apple" data-address="${address}">
-            <i class="fas fa-map-marked-alt"></i>
-            <span>苹果地图</span>
-          </button>
-          <button class="nav-app-btn" data-type="tencent" data-address="${address}">
-            <i class="fas fa-map-marked-alt"></i>
-            <span>腾讯地图</span>
-          </button>
-        </div>
-        <button class="nav-cancel-btn">取消</button>
-      </div>
-    `;
-    document.body.appendChild(dialog);
-    
-    // 添加点击事件
-    dialog.querySelector('.nav-cancel-btn').addEventListener('click', () => {
-      dialog.style.display = 'none';
-    });
-    
-    // 为每个导航应用按钮添加点击事件
-    const navAppButtons = dialog.querySelectorAll('.nav-app-btn');
-    navAppButtons.forEach(button => {
-      button.addEventListener('click', (e) => {
-        const navType = e.currentTarget.getAttribute('data-type');
-        const address = e.currentTarget.getAttribute('data-address');
-        
-        openNavigation(navType, address);
-        dialog.style.display = 'none';
-      });
-    });
-  } else {
-    // 更新已存在对话框中的数据
-    const dialog = document.getElementById('navigationDialog');
-    const navButtons = dialog.querySelectorAll('.nav-app-btn');
-    navButtons.forEach(button => {
-      button.setAttribute('data-address', address);
-    });
-    
-    // 显示已存在的对话框
-    dialog.style.display = 'flex';
-  }
+  // 直接使用高德地图URI API打开标记点位置
+  const encodedAddress = encodeURIComponent(address);
+  const url = `https://uri.amap.com/marker?position=&name=${encodedAddress}&callnative=1&sourceApplication=茅台经销商导航`;
+  
+  // 在新窗口中打开地图
+  window.open(url, '_blank');
 }
 
 /**
