@@ -1,12 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
   <style>
-    .bottle {
-      fill: #f3f3f3;
+    .bottle-outline {
+      fill: none;
       stroke: #b12704;
-      stroke-width: 2;
+      stroke-width: 2.5;
+    }
+    .bottle-body {
+      fill: #f8f8f8;
     }
     .liquid {
       fill: #b12704;
+    }
+    .cap {
+      fill: #ffd700;
     }
     .label {
       fill: #ffd700;
@@ -14,40 +20,35 @@
       stroke-width: 0.5;
     }
     .text {
-      font-family: Arial, sans-serif;
+      font-family: "SimHei", "Microsoft YaHei", sans-serif;
       font-weight: bold;
-      font-size: 9px;
       text-anchor: middle;
       fill: #333;
     }
-    .qrcode {
-      fill: #333;
+    .shine {
+      fill: white;
+      opacity: 0.3;
     }
   </style>
   
-  <!-- 酒瓶 -->
-  <path class="bottle" d="M40,20 L40,15 C40,12 45,10 50,10 C55,10 60,12 60,15 L60,20 L65,30 L65,85 C65,90 58,95 50,95 C42,95 35,90 35,85 L35,30 Z" />
+  <!-- 瓶盖 -->
+  <path class="cap" d="M45,12 L55,12 L55,18 L45,18 Z" />
+  
+  <!-- 瓶身 -->
+  <path class="bottle-body" d="M42,18 L58,18 L63,28 L63,85 C63,90 57,94 50,94 C43,94 37,90 37,85 L37,28 Z" />
+  <path class="bottle-outline" d="M42,18 L58,18 L63,28 L63,85 C63,90 57,94 50,94 C43,94 37,90 37,85 L37,28 Z" />
   
   <!-- 酒液 -->
-  <path class="liquid" d="M38,78 L38,33 L62,33 L62,78 C62,83 57,87 50,87 C43,87 38,83 38,78 Z" />
+  <path class="liquid" d="M40,75 L40,30 L60,30 L60,75 C60,82 55,86 50,86 C45,86 40,82 40,75 Z" />
+  
+  <!-- 瓶身光泽 -->
+  <path class="shine" d="M42,30 C42,30 45,40 45,60 C45,80 42,85 42,85 L44,85 C44,85 47,75 47,60 C47,45 44,30 44,30 Z" />
   
   <!-- 酒瓶标签 -->
-  <rect class="label" x="38" y="40" width="24" height="30" rx="2" />
+  <rect class="label" x="40" y="40" width="20" height="25" rx="2" />
   
   <!-- 标签上的文字 -->
-  <text class="text" x="50" y="52">茅台</text>
-  <text class="text" x="50" y="62">MAOTAI</text>
-  
-  <!-- 简化的二维码 -->
-  <g class="qrcode" transform="translate(42, 65) scale(0.16)">
-    <rect x="0" y="0" width="100" height="100" fill="white" stroke="#333" stroke-width="2" />
-    <rect x="10" y="10" width="20" height="20" />
-    <rect x="70" y="10" width="20" height="20" />
-    <rect x="10" y="70" width="20" height="20" />
-    <rect x="40" y="40" width="20" height="20" />
-    <rect x="30" y="30" width="10" height="10" />
-    <rect x="60" y="30" width="10" height="10" />
-    <rect x="30" y="60" width="10" height="10" />
-    <rect x="60" y="60" width="10" height="10" />
-  </g>
+  <text class="text" x="50" y="50" font-size="9">茅台</text>
+  <text class="text" x="50" y="58" font-size="6">贵州</text>
+  <text class="text" x="50" y="62" font-size="4">MAOTAI</text>
 </svg> 
