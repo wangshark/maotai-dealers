@@ -294,12 +294,12 @@ function showMapWithNavigateButton(poiName, index) {
     return;
   }
   
-  // 优先使用地址进行搜索导航（更可靠，高德会自动识别）
-  const address = dealer.address;
-  const encodedAddress = encodeURIComponent(address);
+  // 优先使用专卖店名称（mapName）进行搜索导航，如果没有则使用地址
+  const searchKeyword = dealer.mapName || dealer.address;
+  const encodedKeyword = encodeURIComponent(searchKeyword);
   
   // 使用search接口，高德地图会自动搜索定位
-  const url = `https://uri.amap.com/search?keyword=${encodedAddress}&callnative=1&sourceApplication=茅台经销商导航`;
+  const url = `https://uri.amap.com/search?keyword=${encodedKeyword}&callnative=1&sourceApplication=茅台经销商导航`;
   
   // 在新窗口中打开高德地图
   window.open(url, '_blank');

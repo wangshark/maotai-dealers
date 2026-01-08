@@ -268,7 +268,7 @@ function renderDealerDetail(dealer) {
     </ul>
     
     <div class="action-buttons">
-      <a href="javascript:void(0);" class="action-button navigate" onclick="navigateToDealer('${dealer.address}')">
+      <a href="javascript:void(0);" class="action-button navigate" onclick="navigateToDealer(${dealerId})">
         <i class="fas fa-map-marker-alt"></i> 导航到这里
       </a>
       <a href="tel:${dealer.phone}" class="action-button call">
@@ -317,14 +317,23 @@ function addToHistory(dealerId) {
 
 /**
  * 导航到经销商位置
- * @param {string} address - 地址
+ * @param {number} dealerId - 经销商ID
  */
-function navigateToDealer(address) {
-  console.log(`准备导航到地址: ${address}`);
+function navigateToDealer(dealerId) {
+  // 获取经销商数据
+  const dealer = dealersData[dealerId];
+  if (!dealer) {
+    console.error('无法获取经销商信息');
+    return;
+  }
   
-  // 直接使用高德地图URI API的search接口，让高德地图自动识别地址
-  const encodedAddress = encodeURIComponent(address);
-  const url = `https://uri.amap.com/search?keyword=${encodedAddress}&callnative=1&sourceApplication=茅台经销商导航`;
+  // 优先使用专卖店名称（mapName）进行搜索导航，如果没有则使用地址
+  const searchKeyword = dealer.mapName || dealer.address;
+  console.log(`准备导航到: ${searchKeyword}`);
+  
+  // 直接使用高德地图URI API的search接口，让高德地图自动识别
+  const encodedKeyword = encodeURIComponent(searchKeyword);
+  const url = `https://uri.amap.com/search?keyword=${encodedKeyword}&callnative=1&sourceApplication=茅台经销商导航`;
   
   // 在新窗口中打开地图
   window.open(url, '_blank');
