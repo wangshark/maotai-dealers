@@ -6,7 +6,6 @@
 // 全局变量
 let dealersData = [];
 let currentDealerId = null;
-let mapInstance = null;
 let favorites = [];
 
 // 页面加载完成后执行
@@ -121,9 +120,6 @@ function loadDealersData() {
       // 渲染经销商详情
       renderDealerDetail(dealer);
       
-      // 初始化地图预览
-      initMap(dealer);
-      
       // 隐藏加载动画
       document.getElementById('loader').style.display = 'none';
     })
@@ -131,42 +127,6 @@ function loadDealersData() {
       console.error('加载数据失败:', error);
       showError(`加载经销商数据失败: ${error.message}`);
     });
-}
-
-/**
- * 初始化地图
- * @param {Object} dealer - 经销商数据
- */
-function initMap(dealer) {
-  if (!dealer.location || !dealer.location.latitude || !dealer.location.longitude) {
-    console.error('经销商坐标信息缺失:', dealer.name);
-    return;
-  }
-  
-  console.log(`初始化地图: ${dealer.name}, 坐标: [${dealer.location.longitude}, ${dealer.location.latitude}]`);
-  
-  // 创建地图实例
-  mapInstance = new AMap.Map('mapPreview', {
-    resizeEnable: true,
-    zoom: 15,
-    center: [dealer.location.longitude, dealer.location.latitude]
-  });
-  
-  // 添加标记
-  const marker = new AMap.Marker({
-    position: [dealer.location.longitude, dealer.location.latitude],
-    title: dealer.name,
-    map: mapInstance
-  });
-  
-  // 添加地图控件
-  mapInstance.addControl(new AMap.Scale());
-  mapInstance.addControl(new AMap.ToolBar({
-    position: 'RB'
-  }));
-  
-  // 设置地图显示层级
-  mapInstance.setFitView();
 }
 
 /**
