@@ -251,16 +251,7 @@ function renderDealerDetail(dealer) {
         <div class="dealer-info-content">
           <div class="dealer-info-label">营业时间</div>
           <div class="dealer-info-value">
-            <div class="business-hours">
-              <div class="business-day">
-                <span class="day-name">周一至周五</span>
-                <span class="day-hours">09:00 - 18:00</span>
-              </div>
-              <div class="business-day">
-                <span class="day-name">周六至周日</span>
-                <span class="day-hours">10:00 - 17:00</span>
-              </div>
-            </div>
+            ${dealer.businessHours || '09:00 - 18:00'}
           </div>
         </div>
       </li>

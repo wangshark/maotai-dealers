@@ -247,14 +247,15 @@ function renderDealersList(dealers) {
     const favoriteIconColor = isFavorite ? '#a81c07' : '#666666';
     
     dealerItem.innerHTML = `
-      <div class="dealer-index">${formattedIndex}</div>
       <div class="dealer-content">
         <div class="dealer-name">
           ${dealer.name}
           <i class="${favoriteIconClass} fa-heart favorite-icon" style="color: ${favoriteIconColor}" onclick="toggleFavorite(${index}, event)"></i>
         </div>
         <div class="dealer-address">${dealer.address}</div>
+        ${dealer.businessHours ? `<div class="dealer-hours">${dealer.businessHours}</div>` : ''}
         <div class="dealer-phone">${dealer.phone}</div>
+        ${dealer.mapName ? `<div class="dealer-map-name">${dealer.mapName}</div>` : ''}
       </div>
       <div class="dealer-actions">
         <a href="javascript:void(0);" class="action-icon navigate" onclick="showMapWithNavigateButton('${dealer.mapName || dealer.address}', ${index})">

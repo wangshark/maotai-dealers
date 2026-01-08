@@ -1,290 +1,365 @@
 [
   {
+    "name": "云南国酒茅台销售有限公司",
+    "address": "云南省昆明市西山区南亚风情第壹城星光苑7幢1-2层05-07室",
+    "phone": "0871-64199509",
+    "mapName": "贵州茅台(云南自营店)",
+    "location": {
+      "latitude": 0.0,
+      "longitude": 0.0
+    },
+    "businessHours": "09:00 - 18:00"
+  },
+  {
     "name": "昆明全兴利商贸有限公司",
     "address": "云南省昆明市五华区虹山东路330号-334号",
     "phone": "0871-65311267",
+    "mapName": "贵州茅台(虹山东路专卖店)",
     "location": {
       "latitude": 0.0,
       "longitude": 0.0
-    }
+    },
+    "businessHours": "09:00 - 18:00"
   },
   {
     "name": "昆明金葵花贸易有限公司",
-    "address": "昆明市五华区青云街俊园北门街3号商铺",
+    "address": "云南省昆明市五华区青云街俊园北门街3号商铺",
     "phone": "0871-65188988",
+    "mapName": "贵州茅台(北门街专卖店)",
     "location": {
       "latitude": 0.0,
       "longitude": 0.0
-    }
+    },
+    "businessHours": "09:00 - 18:00"
+  },
+  {
+    "name": "昆明树发经贸有限公司",
+    "address": "云南省昆明市五华区西园路英茂花园7-13.14.15号商铺",
+    "phone": "0871-68332163",
+    "mapName": "贵州茅台(西园路专卖店)",
+    "location": {
+      "latitude": 0.0,
+      "longitude": 0.0
+    },
+    "businessHours": "09:00 - 18:00"
+  },
+  {
+    "name": "云南东方糖酒有限公司",
+    "address": "云南省昆明市五华区昌源北路620号融城园城A3地块2号写字楼商铺A3201003 A3201004",
+    "phone": "0871-65152326",
+    "mapName": "贵州茅台（昌源北路专卖店）",
+    "location": {
+      "latitude": 0.0,
+      "longitude": 0.0
+    },
+    "businessHours": "09:00 - 18:00"
   },
   {
     "name": "昆明懿德酒业有限公司",
     "address": "云南省昆明市盘龙区白云路与万华路交汇处滨江俊园FS04幢1层商业4号",
     "phone": "0871-65095636",
+    "mapName": "贵州茅台(白云路专卖店)",
     "location": {
       "latitude": 0.0,
       "longitude": 0.0
-    }
-  },
-  {
-    "name": "云南东方糖酒有限公司",
-    "address": "昆明市五华区昌源北路620号融城园城A3地块2号写字楼商铺A3201003  A3201004",
-    "phone": "0871-65152326",
-    "location": {
-      "latitude": 0.0,
-      "longitude": 0.0
-    }
-  },
-  {
-    "name": "文山宗云商贸有限公司",
-    "address": "文山市健民路高山流水小区22栋1-2号",
-    "phone": "0876-2152089",
-    "location": {
-      "latitude": 0.0,
-      "longitude": 0.0
-    }
-  },
-  {
-    "name": "昆明树发经贸有限公司",
-    "address": "昆明市西园路英茂花园7-14号",
-    "phone": "0871-68332163",
-    "location": {
-      "latitude": 0.0,
-      "longitude": 0.0
-    }
-  },
-  {
-    "name": "昆明恒裕商贸有限公司",
-    "address": "昆明市嵩明县嵩阳街道黄龙大街碧桂园10号",
-    "phone": "0873-3732850",
-    "location": {
-      "latitude": 0.0,
-      "longitude": 0.0
-    }
-  },
-  {
-    "name": "大理金叶商务服务有限责任公司",
-    "address": "大理市下关苍山东路461号",
-    "phone": "0872-2179607",
-    "location": {
-      "latitude": 0.0,
-      "longitude": 0.0
-    }
-  },
-  {
-    "name": "昆明品展毅商贸有限公司",
-    "address": "昆明市西山区润城第二大道5C幢109",
-    "phone": "0871-63926698",
-    "location": {
-      "latitude": 0.0,
-      "longitude": 0.0
-    }
-  },
-  {
-    "name": "蒙自同创商贸有限责任公司",
-    "address": "蒙自市北京路西湖水岸一期一层商铺",
-    "phone": "0873-3809925",
-    "location": {
-      "latitude": 0.0,
-      "longitude": 0.0
-    }
-  },
-  {
-    "name": "昭通市靖和商贸有限公司",
-    "address": "昭通市昭阳区龙泉街道凤凰香榭",
-    "phone": "0870-2868599",
-    "location": {
-      "latitude": 0.0,
-      "longitude": 0.0
-    }
+    },
+    "businessHours": "09:00 - 18:00"
   },
   {
     "name": "昆明宏烨商贸有限公司",
-    "address": "昆明市盘龙区北京路延长线金江小区7-34、35号商铺",
+    "address": "云南省昆明市盘龙区北京路延长线金江小区7-34、35号商铺",
     "phone": "0871-63329899",
+    "mapName": "贵州茅台(北京路专卖店)",
     "location": {
       "latitude": 0.0,
       "longitude": 0.0
-    }
+    },
+    "businessHours": "09:00 - 18:00"
+  },
+  {
+    "name": "昆明永尚商贸有限公司",
+    "address": "云南省昆明市官渡区春城路17号",
+    "phone": "0871-63569946",
+    "mapName": "贵州茅台(春城路专卖店)",
+    "location": {
+      "latitude": 0.0,
+      "longitude": 0.0
+    },
+    "businessHours": "09:00 - 18:00"
   },
   {
     "name": "昆明唯沣商贸有限公司",
-    "address": "昆明市西山区前福路润城八期SY1-01、02",
+    "address": "云南省昆明市西山区前福路润城八期SY1-01、02",
     "phone": "0871-64668899",
+    "mapName": "贵州茅台（前福路专卖店）",
     "location": {
       "latitude": 0.0,
       "longitude": 0.0
-    }
+    },
+    "businessHours": "09:00 - 18:00"
   },
   {
     "name": "昆明巨明实业有限公司",
     "address": "云南省昆明市滇池度假区滇池路西贡码头第7幢2号",
     "phone": "0871-65124018",
+    "mapName": "贵州茅台(迎海路专卖店)",
     "location": {
       "latitude": 0.0,
       "longitude": 0.0
-    }
+    },
+    "businessHours": "09:00 - 18:00"
   },
   {
-    "name": "昆明轩桐贸易有限公司",
-    "address": "云南省昆明市晋宁区晋城街道七彩云南•花园里（大观小院）35幢6号、7号商铺",
-    "phone": "0871-67899599",
+    "name": "昆明品展毅商贸有限公司",
+    "address": "云南省昆明市西山区润城第二大道商5C栋109号",
+    "phone": "0871-63926698",
+    "mapName": "贵州茅台（日新路专卖店）",
     "location": {
       "latitude": 0.0,
       "longitude": 0.0
-    }
-  },
-  {
-    "name": "楚雄天森利商贸有限公司",
-    "address": "云南省楚雄彝族自治州楚雄市高新区彝风湿地味觉森林1-30块地7幢-2号",
-    "phone": "0878-3388089",
-    "location": {
-      "latitude": 0.0,
-      "longitude": 0.0
-    }
-  },
-  {
-    "name": "云南博雅酒业有限公司",
-    "address": "云南省昆明市石林彝族自治县世界阳光1期 B7栋19 20 21号",
-    "phone": "0871-67792019",
-    "location": {
-      "latitude": 0.0,
-      "longitude": 0.0
-    }
-  },
-  {
-    "name": "曲靖源茅商贸有限责任公司",
-    "address": "曲靖市麒麟区珠江源大道靖文路138号",
-    "phone": "0874-3955648",
-    "location": {
-      "latitude": 0.0,
-      "longitude": 0.0
-    }
-  },
-  {
-    "name": "西双版纳童州经贸有限公司",
-    "address": "景洪市西双版纳旅游度假区庄董东路6号南亚春天1幢118号商铺",
-    "phone": "0886--3625789",
-    "location": {
-      "latitude": 0.0,
-      "longitude": 0.0
-    }
-  },
-  {
-    "name": "大理市泉源商贸有限责任公司",
-    "address": "大理州经济开发区建标华城兰峰路5幢19号",
-    "phone": "0872-2280123",
-    "location": {
-      "latitude": 0.0,
-      "longitude": 0.0
-    }
-  },
-  {
-    "name": "玉溪新珑浩商贸有限公司",
-    "address": "云南省玉溪市红塔区凤凰路98号",
-    "phone": "0876-6135959",
-    "location": {
-      "latitude": 0.0,
-      "longitude": 0.0
-    }
-  },
-  {
-    "name": "昆明永尚商贸有限公司",
-    "address": "昆明市官渡区春城路17号",
-    "phone": "0871-63569946",
-    "location": {
-      "latitude": 0.0,
-      "longitude": 0.0
-    }
+    },
+    "businessHours": "09:00 - 18:00"
   },
   {
     "name": "昆明鸿酱酒业有限公司",
     "address": "中国（云南）自由贸易试验区昆明片区经开区阿拉街道办昌宏社区经开路3号时代创富中心Ａ幢1层101室",
     "phone": "0871-68363577",
+    "mapName": "贵州茅台(经开路专卖店)",
     "location": {
       "latitude": 0.0,
       "longitude": 0.0
-    }
+    },
+    "businessHours": "09:00 - 18:00"
   },
   {
-    "name": "普洱市思茅区福华酱酒商贸有限责任公司",
-    "address": "云南省普洱市思茅区南屏镇茶苑路34号",
-    "phone": "0879-2308455",
+    "name": "昆明融展振富商贸有限公司",
+    "address": "云南省昆明市官渡区国贸路778号万裕君悦兰庭B4号商铺",
+    "phone": "0871-63818055",
+    "mapName": "贵州茅台（国贸路专卖店）",
     "location": {
       "latitude": 0.0,
       "longitude": 0.0
-    }
+    },
+    "businessHours": "09:00 - 18:00"
   },
   {
-    "name": "德宏州宏达有限责任公司",
-    "address": "云南省德宏州芒市金孔雀大街48号德宏印象商铺6号",
-    "phone": "0692-2133998",
+    "name": "昆明轩桐贸易有限公司",
+    "address": "云南省昆明市晋宁区晋城街道七彩云南•花园里（大观小院）35幢6号、7号商铺",
+    "phone": "0871-67899599",
+    "mapName": "贵州茅台(环湖南路专卖店)",
     "location": {
       "latitude": 0.0,
       "longitude": 0.0
-    }
+    },
+    "businessHours": "09:00 - 18:00"
+  },
+  {
+    "name": "云南博雅酒业有限公司",
+    "address": "云南省昆明市石林彝族自治县狮山路世纪阳光一期7幢18-21号",
+    "phone": "0871-67792019",
+    "mapName": "贵州茅台(狮山路专卖店)",
+    "location": {
+      "latitude": 0.0,
+      "longitude": 0.0
+    },
+    "businessHours": "09:00 - 18:00"
+  },
+  {
+    "name": "香格里拉市南崃酒业有限公司",
+    "address": "云南省昆明市安宁市百花西路40号",
+    "phone": "0887-8881389",
+    "mapName": "贵州茅台（百花西路专卖店）",
+    "location": {
+      "latitude": 0.0,
+      "longitude": 0.0
+    },
+    "businessHours": "09:00 - 18:00"
+  },
+  {
+    "name": "昆明恒裕商贸有限公司",
+    "address": "云南省昆明市嵩明县嵩阳镇黄龙街1071号(碧桂园紫薇星城1幢1层09号商铺)",
+    "phone": "0873-3732850",
+    "mapName": "贵州茅台(黄龙街专卖店)",
+    "location": {
+      "latitude": 0.0,
+      "longitude": 0.0
+    },
+    "businessHours": "09:00 - 18:00"
+  },
+  {
+    "name": "昆明尼慕商贸有限公司",
+    "address": "云南省昆明市呈贡区春漫大道38号",
+    "phone": "0871-68236385",
+    "mapName": "贵州茅台(林溪路专卖店)",
+    "location": {
+      "latitude": 0.0,
+      "longitude": 0.0
+    },
+    "businessHours": "09:00 - 18:00"
+  },
+  {
+    "name": "昆明南云宣酒坊有限公司",
+    "address": "云南省昆明市宜良县南羊街道办乡鸭湖雏鹰路听涛苑H- 4-63号",
+    "phone": "0871-67520920",
+    "mapName": "贵州茅台(雏鹰路专卖店)",
+    "location": {
+      "latitude": 0.0,
+      "longitude": 0.0
+    },
+    "businessHours": "09:00 - 18:00"
+  },
+  {
+    "name": "昆明佐橙商贸有限公司",
+    "address": "云南省昆明市官渡区关上办事处玫瑰湾一期7-8幢E004号",
+    "phone": "0871-67120180",
+    "mapName": "昆明佐橙商贸有限公司",
+    "location": {
+      "latitude": 0.0,
+      "longitude": 0.0
+    },
+    "businessHours": "09:00 - 18:00"
+  },
+  {
+    "name": "云南强胜酒业有限公司",
+    "address": "云南省昆明市官渡区世纪城饵季路商铺D段1-10号",
+    "phone": "0871-63923368",
+    "mapName": "云南强胜酒业有限公司",
+    "location": {
+      "latitude": 0.0,
+      "longitude": 0.0
+    },
+    "businessHours": "09:00 - 18:00"
+  },
+  {
+    "name": "曲靖源茅商贸有限责任公司",
+    "address": "云南省曲靖市麒麟区珠江源大道靖文路138号",
+    "phone": "0874-3955648",
+    "mapName": "贵州茅台(珠江源大道专卖店)",
+    "location": {
+      "latitude": 0.0,
+      "longitude": 0.0
+    },
+    "businessHours": "09:00 - 18:00"
   },
   {
     "name": "富源县智航商贸有限公司",
     "address": "云南省曲靖市富源县中安街道金龙街249号",
     "phone": "0874-4631678",
+    "mapName": "贵州茅台（金龙街专卖店）",
     "location": {
       "latitude": 0.0,
       "longitude": 0.0
-    }
+    },
+    "businessHours": "09:00 - 18:00"
   },
   {
-    "name": "昆明南云宣酒坊有限公司",
-    "address": "云南省昆明市宜良县东城新区乡鸭湖大道听涛苑H-4-63号商铺",
-    "phone": "0871-67520920",
+    "name": "玉溪新珑浩商贸有限公司",
+    "address": "云南省玉溪市红塔区凤凰路98号",
+    "phone": "0877-2298519",
+    "mapName": "贵州茅台(凤凰路专卖店)",
     "location": {
       "latitude": 0.0,
       "longitude": 0.0
-    }
+    },
+    "businessHours": "09:00 - 18:00"
   },
   {
-    "name": "香格里拉市南崃酒业有限公司",
-    "address": "昆明市安宁市百花西路40号",
-    "phone": "0887-8881389",
+    "name": "昭通市靖和商贸有限公司",
+    "address": "云南省昭通市昭阳区龙泉街道凤凰香榭",
+    "phone": "0870-2868599",
+    "mapName": "贵州茅台(官坝路专卖店)",
     "location": {
       "latitude": 0.0,
       "longitude": 0.0
-    }
+    },
+    "businessHours": "09:00 - 18:00"
   },
   {
-    "name": "昆明尼慕商贸有限公司",
-    "address": "昆明市呈贡区春漫大道38号",
-    "phone": "0871-68236385",
+    "name": "普洱市思茅区福华酱酒商贸有限责任公司",
+    "address": "云南省普洱市思茅区南屏镇茶苑路34号",
+    "phone": "0879-2301006",
+    "mapName": "贵州茅台(茶苑路专卖店)",
     "location": {
       "latitude": 0.0,
       "longitude": 0.0
-    }
+    },
+    "businessHours": "09:00 - 18:00"
   },
   {
-    "name": "昆明融展振富商贸有限公司",
-    "address": "云南省昆明市官渡区国贸路778号万裕君悦兰庭B4号商铺",
-    "phone": "0871-63218851",
+    "name": "楚雄天森利商贸有限公司",
+    "address": "云南省楚雄彝族自治州楚雄市高新区彝风大道23号彝风湿地文旅小镇味觉森林7幢1-2室",
+    "phone": "0878-3388089",
+    "mapName": "贵州茅台(彝风大道专卖店)",
     "location": {
       "latitude": 0.0,
       "longitude": 0.0
-    }
+    },
+    "businessHours": "09:00 - 18:00"
   },
   {
-    "name": "昆明佐橙商贸有限公司",
-    "address": "昆明市(官渡区)邦盛商城7幢7一36号",
-    "phone": "0871-67120180",
+    "name": "蒙自同创商贸有限责任公司",
+    "address": "云南省蒙自市北京路西湖水岸一期一层商铺",
+    "phone": "0873-3809925",
+    "mapName": "贵州茅台(蒙自北京路专卖店)",
     "location": {
       "latitude": 0.0,
       "longitude": 0.0
-    }
+    },
+    "businessHours": "09:00 - 18:00"
   },
   {
-    "name": "云南强胜酒业有限公司",
-    "address": "昆明市官渡区世纪城饵季路商铺D段1-10号",
-    "phone": "0871-63923368",
+    "name": "文山宗云商贸有限公司",
+    "address": "云南省文山市健民路高山流水小区22栋1-2号",
+    "phone": "0876-2152089",
+    "mapName": "贵州茅台(健民路专卖店)",
     "location": {
       "latitude": 0.0,
       "longitude": 0.0
-    }
+    },
+    "businessHours": "09:00 - 18:00"
+  },
+  {
+    "name": "西双版纳童州经贸有限公司",
+    "address": "云南省景洪市西双版纳旅游度假区庄董东路6号南亚春天1幢122-123号商铺",
+    "phone": "0691-2568699",
+    "mapName": "贵州茅台(庄董东路专卖店)",
+    "location": {
+      "latitude": 0.0,
+      "longitude": 0.0
+    },
+    "businessHours": "09:00 - 18:00"
+  },
+  {
+    "name": "大理金叶商务服务有限责任公司",
+    "address": "云南省大理市下关苍山东路461号",
+    "phone": "0872-2179607",
+    "mapName": "贵州茅台(苍山东路专卖店)",
+    "location": {
+      "latitude": 0.0,
+      "longitude": 0.0
+    },
+    "businessHours": "09:00 - 18:00"
+  },
+  {
+    "name": "大理市泉源商贸有限责任公司",
+    "address": "云南省大理州经济开发区建标华城兰峰路5幢19号",
+    "phone": "0872-2330909",
+    "mapName": "贵州茅台(兰峰路专卖店)",
+    "location": {
+      "latitude": 0.0,
+      "longitude": 0.0
+    },
+    "businessHours": "09:00 - 18:00"
+  },
+  {
+    "name": "德宏州宏达有限责任公司",
+    "address": "云南省德宏州芒市金孔雀大街48号德宏印象商铺6号",
+    "phone": "0692-2133998",
+    "mapName": "贵州茅台(金孔雀大街专卖店)",
+    "location": {
+      "latitude": 0.0,
+      "longitude": 0.0
+    },
+    "businessHours": "09:00 - 18:00"
   }
 ]
